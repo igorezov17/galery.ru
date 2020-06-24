@@ -76,7 +76,7 @@ AppImage::register($this);
                     </a>
                   </p>
                   <p class="control">
-                    <a class="button is-primary" href="register.html">
+                    <a class="button is-primary" href="/register/reg">
                       <span class="icon">
                         <i class="fas fa-address-book"></i>
                       </span>

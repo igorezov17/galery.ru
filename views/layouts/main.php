@@ -41,9 +41,9 @@ AppAsset::register($this);
             ['label' => 'Images', 'url'=>['/image']],
             ['label' => 'Test', 'url'=>['/test/hello']],
             ['label' => 'News', 'url'=>['/news/all']],
-            ['label'=> 'Media1', 'url'=>['/media1/dexter']],
             ['label' => 'About', 'url' => ['/site/about']],
             ['label' => 'Contact', 'url' => ['/site/contact']],
+            
             Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]
             ) : (
@@ -55,7 +55,8 @@ AppAsset::register($this);
                 )
                 . Html::endForm()
                 . '</li>'
-            )
+                ),
+                ['label' => 'Registration', 'url' => ['/register/signup']]
         ],
     ]);
     NavBar::end();
