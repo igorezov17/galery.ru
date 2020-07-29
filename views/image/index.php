@@ -19,6 +19,7 @@ use yii\helpers\Url;
       <section class="section main-content">
         <div class="container">
           <div class="columns  is-multiline">
+
           <?php foreach($images as $image): ?>
             <div class="column is-one-quarter">
               <div class="card">

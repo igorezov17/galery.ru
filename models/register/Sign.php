@@ -2,6 +2,7 @@
 
 namespace app\models\register;
 
+use Yii;
 use yii\base\Model;
 use app\models\Users;
 use app\models\register\User1;
@@ -26,10 +27,14 @@ class Sign extends Model
     public function sign()
     {
         $user = new User1();
+
         $user->email = $this->email;
-        $user->setPassword($this->password);
+        $user->password = Yii::$app->security->generatePasswordHash($this->password);
+
         // $user->password = sha1($this->password);
         return $user->save(); //true or false
     }
+
+    
 
 }

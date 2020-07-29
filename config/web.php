@@ -7,7 +7,10 @@ $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
-    //'defaultRoute' => 'test/index',
+    // 'aliases' => [
+    //     '@adminlte/widgets'=>'@vendor/adminlte/yii2-widgets'
+    //     ],
+    'defaultRoute' => 'site/index',
     'language' => 'ru',
     //'layout' => 'maybe',
     'aliases' => [
@@ -15,16 +18,21 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
     ],
     'components' => [
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager',
+            'cache' => 'cache' //Включаем кеширование 
+        ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => '-enDh6-avrkwO4kqWuYXAKWBak40AbCi',
             'baseUrl' => '',
+            'enableCsrfValidation' => false,
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            'identityClass' => 'app\models\User',
+            'identityClass' => 'app\models\login\users',
             'enableAutoLogin' => true,
         ],
         'errorHandler' => [
@@ -53,14 +61,42 @@ $config = [
             'showScriptName' => false,
             'rules' => [
                 '<controller:\w+>/<action:[-\w]+>/<id:\d+>' => '<controller>/<action>',
+                '<controller:\w+>/<id:\d+>' => '<controller>/view',
+                '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
+                '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
+
+                '/' => 'image/index',
+                '/admin/users/'=>'/modules/admin/users/index',
+                '/admin/posts/'=>'/modules/admin/posts/index',
+                '/admin/image/'=>'/modules/admin/image/index',
+                '/forum/about' => '/modules/forum/about',
                 // 'hello' => 'test/hello',
                 // 'image/get-image/<id:\d+>' => 'image/get-image'
+                // 'admin' => ''
 
             ],
         ],
         
     ],
+    'modules' => [
+        'admin' => [
+            'class' => 'app\modules\admin\dmn',
+            // 'layout' => 'main',
+        ],
+        'forum' => [
+            'class' => 'app\modules\forum\frm',
+        ],
+        
+    ],
+
+    // ],
+    // 'aliases' => [
+    //     '@adminlte/widgets'=>'@vendor/adminlte/yii2-widgets'
+    // ],
     'params' => $params,
+
+
+
 ];
 
 if (YII_ENV_DEV) {

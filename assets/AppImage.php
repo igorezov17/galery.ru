@@ -20,15 +20,18 @@ class AppImage extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/app.css',
-        'css/bootstrap.min.css',
+        // 'css/app.css',
+        //'css/style.css',
         'css/bulma.css',
-        'css/style.css',
+        'css/app.css',
+        'css/bootstrap.min.css',   
+        // 'css/bootstrap.min.css',
+        // 'css/style.css',
 
         //'css/style.css',
     ];
     public $js = [
-        //'js/scripts.js',
+        'js/scripts.js',
     ];
    /* public $jsOptions = [
         'position' => \yii\web\View::POS_END

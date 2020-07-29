@@ -3,20 +3,25 @@
 namespace app\controllers;
 
 use Yii;
+use app\models\News;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
-use app\models\LoginForm;
-use app\models\ContactForm;
-use app\models\EntryForm;
+
 
 class NewsController extends Controller
 {
-    public $layout = 'basic';
+    //public $layout = 'basic';
 
-    public function actionAll()
+    public function actionIndex()
     {
-        return $this->render('index');
+        $news = new News;
+        $posts = $news->getAllNews();
+        // echo "<pre>";
+        // print_r($posts);
+        // echo "</pre>";
+        // die;
+        return $this->render('index', ['news' => $posts]);
     }
 }

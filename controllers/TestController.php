@@ -6,6 +6,8 @@ use yii\base\Controller;
 use Yii;
 use app\models\Users;
 use app\models\FormValid;
+use app\models\Employs;
+
 
 
 class TestController extends Controller
@@ -42,21 +44,27 @@ class TestController extends Controller
 
     public function actionFormTest()
     {
-        $formValid = new FormValid();
-
         $formData = Yii::$app->request->post();
+
         if (Yii::$app->request->isPost)
         {
-            $formValid->email = $formData['email'];
-            $formValid->name = $formData['name'];
-
-            if ($formValid->validate())
-            {
-                $formValid->save();
-            }
+            echo "<pre>";
+            print_r($formData);
+            echo "</pre>";
+         
         }
+
         
-        return $this->render('formtest', ['formValid' => $formValid]);
+        return $this->render('formtest');
+        
+    }
+
+
+    public function debug($obt)
+    {
+        echo "<pre>";
+        print_r($obt);
+        echo "</pre>";
     }
 
     public function actionFormUser()
@@ -69,5 +77,53 @@ class TestController extends Controller
     {
         echo "that is cull";
         var_dump(Yii::$app->request->post());
+    }
+
+    public function actionHtmlHelp()
+    {
+        return $this->render('helps');
+    }
+
+    public function actionOutPut()
+    {
+
+        $comments = [
+            [
+                'id' => 1,
+                'author' => 'Mikki',
+                'text' => 'Hello' 
+            ],
+            [
+                'id' => 2,
+                'author' => 'Rutta',
+                'text' => 'Hello, how you?' 
+            ],
+            [
+                'id' => 2,
+                'author' => 'Rutta',
+                'text' => '<b>Hello</b><script>alert("I will steal you money")</script>' 
+            ]
+            ];
+        return $this->render('out', ['comments' => $comments]);
+    }
+
+    public function actionTakeAll()
+    {
+
+        // $employs = Employs::find();
+        // return $this->render('takeall', ['employs' => $employs]);
+
+        $c = 0;
+        $array = [];
+        for ($a = 1; $a<rand(5,15); $a++)
+        {
+            $array[rand(1,90)]=rand(5,100);
+            $c++;
+        }
+        $arr = array_unique($array);
+        $this->debug($array);
+        echo $c;
+
+        die;
     }
 }
