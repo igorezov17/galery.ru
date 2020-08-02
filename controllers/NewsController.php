@@ -17,7 +17,8 @@ class NewsController extends Controller
     public function actionIndex()
     {
         $news = new News;
-        $posts = $news->getAllNews();
+        //$posts = $news->getAllNews();
+        $posts = News::getAll();
         // echo "<pre>";
         // print_r($posts);
         // echo "</pre>";

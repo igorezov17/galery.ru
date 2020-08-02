@@ -67,9 +67,16 @@ $config = [
 
                 '/' => 'image/index',
                 '/admin/users/'=>'/modules/admin/users/index',
+
                 '/admin/posts/'=>'/modules/admin/posts/index',
+                '/admin/posts/edit/'=>'/modules/admin/posts/edit/',
+
                 '/admin/image/'=>'/modules/admin/image/index',
-                '/forum/about' => '/modules/forum/about',
+                '/forum/about/' => '/modules/forum/about',
+                
+                '/image/ratota/<id:\d+>' => '/image/ratota',
+
+
                 // 'hello' => 'test/hello',
                 // 'image/get-image/<id:\d+>' => 'image/get-image'
                 // 'admin' => ''

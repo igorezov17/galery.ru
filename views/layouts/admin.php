@@ -24,9 +24,9 @@ AppAsset3::register($this);
   <title>AdminLTE 2 | Starter</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <link rel="stylesheet" href= __DIR__ . "../web/css/bootstrap.min.css">
+  <link rel="stylesheet" href= "/css/bootstrap.min.css">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href= __DIR__ . "../web/css/font-awesome.min.css">
+  <link rel="stylesheet" href= "/css/font-awesome.min.css">
 
   <link rel="stylesheet" href="assets/css/ionicons.min.css">
   <!-- DataTables -->

@@ -1,4 +1,8 @@
+<?php
 
+use yii\helpers\Html;
+
+?>
       <section class="hero is-warning">
         <div class="hero-body">
           <div class="container">
@@ -22,20 +26,21 @@
             <?php //echo flash(); ?>
           <form action="/photo/store" method="GET" enctype="multipart/form-data">
             <div class="field">
-              <label class="label">Название</label>
+              
+              <label>Name</label>
               <div class="control">
                 <input class="input" type="text" name="name"> 
               </div>
             </div>
 
             <div class="field">
-              <label class="label">Краткое описание</label>
+              <label>Description</label>
               <div class="control">
                 <textarea class="textarea" name="desc"></textarea>
               </div>
             </div>
             
-            <div class="field">
+            <!-- <div class="field">
               <label class="label">Выберите категорию</label>
               <div class="control">
                 <div class="select">
@@ -44,10 +49,10 @@
                   </select>
                 </div>
               </div>
-            </div>
+            </div> -->
 
             <div class="field">
-              <label class="label">Выберите картинку</label>
+              <label>Image</label>
               <div class="file is-normal has-name">
                 <label class="file-label">
                   <input class="file-input" type="file" name="resume">
@@ -56,7 +61,7 @@
                       <i class="fas fa-upload"></i>
                     </span>
                     <span class="file-label">
-                      Выбрать файл
+                      File
                     </span>
                   </span>
                 </label>

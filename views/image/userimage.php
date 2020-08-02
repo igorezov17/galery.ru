@@ -1,4 +1,10 @@
+<?php
 
+use yii\helpers\Html;
+use yii\widgets\ActiveForm;
+use yii\helpers\Url;
+
+?>
       <section class="hero is-primary">
         <div class="hero-body">
           <div class="container">
@@ -28,11 +34,12 @@
                   <div class="media my-photo">
                     <div class="media-left">
                       <p class="title is-5">
-                        <a href="/image/update/<?php echo $image['id']?>" class="button is-warning">
-                          <i class="fa fa-edit"></i>
+
+                        <a href="<?= Url::toRoute(['image/ratota', 'id'=>$image['id']]); ?>" class="button is-warning">
+                          <i class="fa fa-edit">Ratota</i>
                         </a>
                         <a href="category.html" class="button is-danger">
-                          <i class="fa fa-times"></i>
+                          <i class="fa fa-times">Delete</i>
                         </a>
                       </p>
                     </div>

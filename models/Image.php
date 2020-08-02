@@ -18,4 +18,11 @@ class Image extends ActiveRecord
 
         return $data;
     }
+    
+    public function attributeLabels()
+    {
+        return [
+            'filename' => 'Filename',
+        ];
+    }
 }

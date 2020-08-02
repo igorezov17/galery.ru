@@ -16,14 +16,16 @@
                   </li>
                 </ul>
                 
-              </div>
+                </div>
               <div class="is-clearfix"></div>
                 <div class="columns is-centered">
                   <div class="column is-half">
+                 
+                  <form type="text" action="/profile/postSecurity" method="POST">
                     <div class="field">
-                      <label class="label">Текущий пароль</label>
+                    <h6>Parol</h6>
                       <div class="control has-icons-left has-icons-right">
-                        <input class="input" type="password">
+                        <input class="input" type="password" name="password">
                         <span class="icon is-small is-left">
                           <i class="fas fa-user"></i>
                         </span>
@@ -31,14 +33,25 @@
                     </div>
 
                     <div class="field">
-                      <label class="label">Новый пароль</label>
+                    <h6>New Parol</h6>
                       <div class="control has-icons-left has-icons-right">
-                        <input class="input" type="password" >
+                        <input class="input" type="password" name="new_password">
                         <span class="icon is-small is-left">
                           <i class="fas fa-user"></i>
                         </span>
                       </div>
                     </div>
+
+                    <div class="field">
+                    <h6>Turn Parol</h6>
+                      <div class="control has-icons-left has-icons-right">
+                        <input class="input" type="password" name="second_new_password">
+                        <span class="icon is-small is-left">
+                          <i class="fas fa-user"></i>
+                        </span>
+                      </div>
+                    </div>
+
 
                     <div class="control">
                       <button class="button is-link">Обновить</button>

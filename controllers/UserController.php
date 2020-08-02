@@ -36,6 +36,13 @@ class UserController extends Controller
         return $this->render('security');
     }
 
+    public function actionLogout()
+    {
+        Yii::$app->user->logout();
+
+        return $this->goHome();
+    }
+
     /**
      * Undocumented function
      *
@@ -65,8 +72,12 @@ class UserController extends Controller
         // $canAdmin = Yii::$app->authManager->createPermission('canAdmin');
         // $canAdmin->description = 'Is admin';
         // Yii::$app->authManager->add($canAdmin);
-        // $userRole = Yii::$app->authManager->getRole('admin');
-        // Yii::$app->authManager->assign($userRole, Yii::$app->user->getId());
+        
+        // var_dump(Yii::$app->user->getId());
+        // die;
+
+        $userRole = Yii::$app->authManager->getRole('content');
+        Yii::$app->authManager->assign($userRole, Yii::$app->user->getId());
 
         return True;
 

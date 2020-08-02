@@ -17,7 +17,6 @@ class Loginup extends Model
     public function rules()
     {
         return [
-
             [['username', 'email', 'password'], 'required'],
             [['username'], 'string', 'min'=>2, 'max'=>250],
             [['email'], 'string', 'max'=>250],
@@ -26,7 +25,6 @@ class Loginup extends Model
             // [['email'], 'unique', 'targetClass'=>User::className()],
             [['password'], 'string', 'min'=>2],
             [['password'], 'validatePassword'],
-
         ];
     }
 

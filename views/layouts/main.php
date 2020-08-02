@@ -70,7 +70,7 @@ AppImage::register($this);
                                     <div class="dropdown-content">
                                         <div class="dropdown-item manager-links">
                                             <p class="control">
-                                                <a class="button" href="/photos/create">
+                                                <a class="button" href="/image/create">
                                                       <span class="icon">
                                                         <i class="fas fa-upload"></i>
                                                       </span>
@@ -97,15 +97,16 @@ AppImage::register($this);
                                 </p>
                             </div>
                             <p class="control">
-                                <a class="button is-info" href="/profile/info?>>"
+                                <a class="button is-info" href="/user/info?>">
                                   <span class="icon">
                                     <i class="fas fa-user"></i>
+
                                   </span>
                                     <span>Профиль</span>
                                 </a>
                             </p>
                             <p class="control">
-                                <a class="button is-dark" href="/logout">
+                                <a class="button is-dark" href="/user/logout">
                                   <span class="icon">
                                     <i class="fas fa-window-close"></i>
                                   </span>
