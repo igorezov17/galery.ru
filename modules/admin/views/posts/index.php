@@ -5,7 +5,7 @@ use yii\helpers\Html;
 
 <h1>Все изображения</h1>
 <div class="box-body">
-<a href="admin/users/edit"  class="btn btn-success btn-lg" >
+<a href="/admin/posts/edit/"  class="btn btn-success btn-lg" >
 <i class="fa fa-pencil"></i>
 Create
 </a>
@@ -16,7 +16,9 @@ Create
     <th>Description</th>
     <th>Image</th>
     <th>Action</th>
-    <?php foreach($posts as $post): ?>
+    <?php foreach($posts as $post):
+
+        ?>
     <tr>
         <td><?= $post->title; ?></td>
         <td><?= $post->description; ?></td>

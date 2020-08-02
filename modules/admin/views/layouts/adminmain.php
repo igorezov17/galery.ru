@@ -60,7 +60,8 @@ AppAsset::register($this);
         <?= $content ?>
     </div>
 </div>
-<?php for($i=0;$i<20;$i++)
+<?php 
+for($i=0;$i<20;$i++)
 {
     echo "<br>";
 }
