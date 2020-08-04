@@ -7,10 +7,9 @@ use app\models\image\Category;
 use app\models\image\Photos;
 use app\models\Image;
 use yii\web\UploadedFile;
-//use yii\base\Controller;
 use yii\web\Controller;
+use app\models\admin\images\ImageFrm;
 
-use Photos as GlobalPhotos;
 
 class ImageController extends Controller
 {
@@ -20,8 +19,17 @@ class ImageController extends Controller
     {
         $image = new Photos();
         $images = $image->getAllImage();
+
+        //$sql = "SELECT users.usename as username, photos.title as imagename,  ";
         
         return $this->render('index', ['images' => $images]);
+    }
+
+
+    public function actionTest()
+    {
+        $model = new ImageFrm();
+        echo $model->foo();
     }
 
     public function actionRatota($id)
@@ -58,14 +66,18 @@ class ImageController extends Controller
         //$photos = Photos::getAllImage();
         $photo = Photos::getOne($id);
         $categories = Category::getAllCategory();
-        $this->view->params['customParam'] = $categories;
-        return $this->render('getimage', ['image' => $photo]);
+        $image = new Photos();
+
+        $userimage = $image->userImage(Yii::$app->user->getId());
+        //$this->view->params['customParam'] = $categories;
+        return $this->render('getimage', ['image' => $photo, 'userimage'=>$userimage]);
     }
 
     public function actionUserImage()
     {
         $images = Photos::find()->all();
 
+        
         return $this->render('userimage', ['images' => $images]);
     }
 

@@ -5,7 +5,7 @@ use yii\helpers\Html;
 
 <h1>Все изображения</h1>
 <div class="box-body">
-<a href="admin/users/edit"  class="btn btn-success btn-lg" >
+<a href="/admin/images/edit/"  class="btn btn-success btn-lg" >
 <i class="fa fa-pencil"></i>
 Create
 </a>

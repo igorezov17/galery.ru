@@ -26,18 +26,18 @@ use yii\helpers\Url;
                 <div class="card-image">
                   <figure class="image is-4by3">
                     <a href="<?= Url::toRoute(['image/view', 'id'=>$image['id']]); ?>">
-                      <img src="<?php echo '/uploads/' . $image['image'] ?>" alt="Placeholder image">
+                      <img src="<?php echo '/uploads/' . $image['img'] ?>" alt="Placeholder image">
                     </a>
                   </figure>
                 </div>
                 <div class="card-content">
                   <div class="media">
                     <div class="media-left">
-                    <p class="title is-5"><a href="category.html">Природа</a></p>
+                    <p class="title is-5"><a href="category.html"><?php echo $image['categname'] ?></a></p>
                     </div>
                     <div class="media-right">
                       <p  class="is-size-7">Размер: 1280x760</p>
-                      <time datetime="2016-1-1" class="is-size-7">Добавлено: <?php echo $image->date; ?></time>
+                      <time datetime="2016-1-1" class="is-size-7">Добавлено: <?php echo $image['date']; ?></time>
                     </div>
                   </div>
                 </div>

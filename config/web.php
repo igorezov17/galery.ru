@@ -66,15 +66,19 @@ $config = [
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
 
                 '/' => 'image/index',
+                '/image/ratota/<id:\d+>' => '/image/ratota',
+                //admin
                 '/admin/users/'=>'/modules/admin/users/index',
 
                 '/admin/posts/'=>'/modules/admin/posts/index',
                 '/admin/posts/edit/'=>'/modules/admin/posts/edit/',
 
                 '/admin/image/'=>'/modules/admin/image/index',
+                '/admin/images/edit/'=>'/modules/admin/images/edit',
+                '/admin/images/update/'=>'/modules/admin/images/update',
                 '/forum/about/' => '/modules/forum/about',
                 
-                '/image/ratota/<id:\d+>' => '/image/ratota',
+
 
 
                 // 'hello' => 'test/hello',

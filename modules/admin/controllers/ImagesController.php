@@ -4,6 +4,7 @@ namespace app\modules\admin\controllers;
 
 use yii\web\Controller;
 use app\models\Image;
+use app\models\ImageFrm;
 
 /**
  * Default controller for the `admin` module
@@ -21,6 +22,22 @@ class ImagesController extends Controller
         $images = Image::getAll();
         //echo "Welcome In first in Admin";
         return $this->render('index', ['images' => $images]);
+    }
+
+    public function actionEdit()
+    {
+        $model = new ImageFrm();
+        // var_dump($model);
+        // die;
+        return $this->render('edit', ['model' => $model]);
+    }
+
+    public function actionUpdate()
+    {
+        $model = new ImageFrm();
+        // var_dump($model);
+        // die;
+        return $this->render('update', ['model' => $model]);
     }
 
     

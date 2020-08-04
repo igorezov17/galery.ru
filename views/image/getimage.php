@@ -1,3 +1,10 @@
+<?php 
+
+use yii\helpers\Html;
+use yii\widgets\ActiveForm;
+use yii\helpers\Url;
+
+?>
 
       <section class="hero is-info is-medium">
         <div class="hero-body">
@@ -53,102 +60,41 @@
 
         <div class="columns">
           <div class="column">
-            <h1 class="title">Другие фотографии от <a href="">marlin</a></h1>
+            <h1 class="title">Другие фотографии от <a><?php echo $userimage[0]['username']; ?></a></h1>
           </div>
         </div>
 
         <div class="columns section">
 
+          <?php foreach($userimage as $img): ?>
           <div class="column is-one-quarter">
               <div class="card">
                 <div class="card-image">
                   <figure class="image is-4by3">
-                    <a href="photo.html">
-                      <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
+                    
+                  <a href="<?= Url::toRoute(['image/view', 'id'=>$img['id']]); ?>">
+                      <img src="<?php echo "/uploads/" . $img['img'] ?>" alt="Placeholder image">
                     </a>
                   </figure>
                 </div>
                 <div class="card-content">
                   <div class="media">
                     <div class="media-left">
-                    <p class="title is-5"><a href="category.html">Природа</a></p>
+                  
+                    <p class="title is-5"><a href="#"><?php echo $img['categname']; ?></a></p>
                     </div>
                     <div class="media-right">
                       <p  class="is-size-7">Размер: 1280x760</p>
-                      <time datetime="2016-1-1" class="is-size-7">Добавлено: 12.02.2018</time>
+                      <time datetime="2016-1-1" class="is-size-7">Добавлено: <?php echo $img['date']; ?></time>
                     </div>
                   </div>
                 </div>
               </div>
           </div>
 
-          <div class="column is-one-quarter">
-              <div class="card">
-                <div class="card-image">
-                  <figure class="image is-4by3">
-                    <a href="photo.html">
-                      <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
-                    </a>
-                  </figure>
-                </div>
-                <div class="card-content">
-                  <div class="media">
-                    <div class="media-left">
-                    <p class="title is-5"><a href="category.html">Природа</a></p>
-                    </div>
-                    <div class="media-right">
-                      <p  class="is-size-7">Размер: 1280x760</p>
-                      <time datetime="2016-1-1" class="is-size-7">Добавлено: 12.02.2018</time>
-                    </div>
-                  </div>
-                </div>
-              </div>
-          </div>
-          <div class="column is-one-quarter">
-              <div class="card">
-                <div class="card-image">
-                  <figure class="image is-4by3">
-                    <a href="photo.html">
-                      <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
-                    </a>
-                  </figure>
-                </div>
-                <div class="card-content">
-                  <div class="media">
-                    <div class="media-left">
-                    <p class="title is-5"><a href="category.html">Природа</a></p>
-                    </div>
-                    <div class="media-right">
-                      <p  class="is-size-7">Размер: 1280x760</p>
-                      <time datetime="2016-1-1" class="is-size-7">Добавлено: 12.02.2018</time>
-                    </div>
-                  </div>
-                </div>
-              </div>
-          </div>
+          <?php endforeach; ?>
 
-          <div class="column is-one-quarter">
-              <div class="card">
-                <div class="card-image">
-                  <figure class="image is-4by3">
-                    <a href="photo.html">
-                      <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
-                    </a>
-                  </figure>
-                </div>
-                <div class="card-content">
-                  <div class="media">
-                    <div class="media-left">
-                    <p class="title is-5"><a href="category.html">Природа</a></p>
-                    </div>
-                    <div class="media-right">
-                      <p  class="is-size-7">Размер: 1280x760</p>
-                      <time datetime="2016-1-1" class="is-size-7">Добавлено: 12.02.2018</time>
-                    </div>
-                  </div>
-                </div>
-              </div>
-          </div>
+          
 
         </div>
       </div>

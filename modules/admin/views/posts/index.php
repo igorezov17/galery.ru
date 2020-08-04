@@ -16,6 +16,8 @@ Create
     <th>Description</th>
     <th>Image</th>
     <th>Action</th>
+
+
     <?php foreach($posts as $post):
 
         ?>
@@ -28,7 +30,7 @@ Create
             <i class="fa fa-pencil"></i>
             Update
             </a>
-            <a href="photos/<?php echo $post['id']; ?>/delete" class="btn btn-danger" onclick="return confirm('Вы уверены?');">
+            <a href="<?php echo $post['id']; ?>/delete" class="btn btn-danger" onclick="return confirm('Вы уверены?');">
             <i class="fa fa-remove"></i>
             Delete
             </a>

@@ -1,6 +1,7 @@
 
 <?php 
 
+
 use yii\helpers\Html;
 
 ?>
@@ -23,22 +24,53 @@ Create
             // echo "</pre>";
             // die;
     ?>
-<?php foreach($users as $user): 
-        // echo "<pre>";
-        // var_dump($user);
-        // echo "</pre>";
-        // die;
-    ?>
+        <?php $roles = Yii::$app->authManager->getRolesByUser(Yii::$app->user->id); ?>
+
+        <?php
+        $role;
+        foreach ($roles as $rol)
+        {
+            $role = $rol;
+        }            
+        ?>  
+    <?php foreach($users as $user): ?>
     <div class="col-md-10">
         <tr>
             <th><?= $user['username']; ?></th>
             <th><?= $user['email']; ?></th>
             <th><img src="<?= "/uploads/" . $user['image']; ?>" alt="" width="200"></th>
             <td>
+
+        <?php
+
+        ?>
+
+            <?php if ($role->name == 'ban') { ?>
+            
                 <a href="photos/<?php echo $user['id']; ?>/edit" class="btn btn-warning">
                 <i class="fa fa-pencil"></i>
-                Update
+                Ban
                 </a>
+            <?php } elseif ($role->name == 'content') { ?>
+                <a href="photos/<?php echo $user['id']; ?>/edit" class="btn btn-primary">
+                <i class="fa fa-pencil"></i>
+                Content
+                </a>
+            <?php } elseif ($role->name == 'admin') { ?>
+                <a href="photos/<?php echo $user['id']; ?>/edit" class="btn btn-dark">
+                <i class="fa fa-pencil"></i>
+                Admin
+                </a>
+            <?php } else { ?>
+                <a href="photos/<?php echo $user['id']; ?>/edit" class="btn btn-success">
+                <i class="fa fa-pencil"></i>
+                Active
+                </a>
+            <?php } ?>
+                <!-- <a href="photos/<?php echo $user['id']; ?>/edit" class="btn btn-info">
+                <i class="fa fa-pencil"></i>
+                Update
+                </a> -->
                 <a href="photos/<?php echo $user['id']; ?>/delete" class="btn btn-danger" onclick="return confirm('Вы уверены?');">
                 <i class="fa fa-remove"></i>
                 Delete

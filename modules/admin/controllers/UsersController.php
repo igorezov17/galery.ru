@@ -30,6 +30,12 @@ class UsersController extends Controller
             ]
         ];
     }
+
+
+    public function actionGetUserRole()
+    {
+        
+    }
     /**
      * Renders the index view for the module
      * @return string
