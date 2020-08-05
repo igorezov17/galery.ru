@@ -3,6 +3,7 @@
 
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 
 ?>
 
@@ -67,11 +68,13 @@ Create
                 Active
                 </a>
             <?php } ?>
-                <!-- <a href="photos/<?php echo $user['id']; ?>/edit" class="btn btn-info">
+                <!-- <a href="photos/<?php //echo $user['id']; ?>/edit" class="btn btn-info">
                 <i class="fa fa-pencil"></i>
                 Update
                 </a> -->
-                <a href="photos/<?php echo $user['id']; ?>/delete" class="btn btn-danger" onclick="return confirm('Вы уверены?');">
+               
+                <a href="/admin/users/delete/<?php echo $user['id']; ?>" class="btn btn-danger" onclick="return confirm('Вы уверены?');">
+                
                 <i class="fa fa-remove"></i>
                 Delete
                 </a>

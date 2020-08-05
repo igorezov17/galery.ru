@@ -64,11 +64,15 @@ $config = [
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
+                '<controller>/<id:\d+>/<action:\w+>' => '<controller>/<action>',
+
 
                 '/' => 'image/index',
+                '/image/delete/<id:\d+>/' => '/image/delete',
                 '/image/ratota/<id:\d+>' => '/image/ratota',
                 //admin
                 '/admin/users/'=>'/modules/admin/users/index',
+                '/admin/users/delete/<id:\d+>'=>'/admin/users/delete',
 
                 '/admin/posts/'=>'/modules/admin/posts/index',
                 '/admin/posts/edit/'=>'/modules/admin/posts/edit/',

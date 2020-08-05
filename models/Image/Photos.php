@@ -18,7 +18,7 @@ class Photos extends ActiveRecord
                     photos.image as img, 
                     photos.date as date, 
                     category.title as categname 
-                FROM photos LEFT JOIN category on photos.category_id = category.id LIMIT 8";
+                FROM photos LEFT JOIN category on photos.category_id = category.id ";
            return Yii::$app->db->createCommand($sql)->queryAll();
         // $photos = self::find()->all();
         // return $photos;
@@ -49,5 +49,13 @@ class Photos extends ActiveRecord
         return Yii::$app->db->createCommand($sql)
                                 ->bindValue(':id', $id)
                                 ->queryAll();
+    }
+
+    public function deleteImage($id)
+    {
+        $sql = "DELETE FROM photos WHERE id = :id";
+        return Yii::$app->db->createCommand($sql)
+                        ->bindValue(':id', $id)
+                        ->execute();
     }
 }

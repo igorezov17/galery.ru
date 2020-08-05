@@ -3,6 +3,7 @@
 namespace app\modules\admin\controllers;
 
 use Yii;
+use yii\helpers\Url;
 use yii\web\UploadedFile;
 use yii\web\Controller;
 use app\models\Users;
@@ -22,7 +23,7 @@ class UsersController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index', 'edit'],
+                        'actions' => ['index', 'edit', 'delete'],
                         'allow' => true,
                         'roles' => ['admin'],
                     ],
@@ -59,19 +60,43 @@ class UsersController extends Controller
         $date = Yii::$app->request->post();
         $image = UploadedFile::getInstances($model, 'imageFiles');
         $model->imageFiles = $image[0]->name;
+        $model->image = $image[0]->name;
+        
         // // var_dump($model->imageFiles);
         // // die;
         // // echo "<br>";
         // $model->username = 'мудак';
-        
+        $data = Yii::$app->request->post('SignupForm');
+        // $image = UploadedFile::getInstances($model, 'imageFiles');
+        // echo "<pre>";
+        // print_r($data['username']);
+        // echo "</pre>";
+        // var_dump($image[0]->name);
 
-        if ($model->load(Yii::$app->request->post()) && $model->imageFiles=$image[0]->name )
+        $model->username = $data['username'];
+        $model->email = $data['email'];
+        $model->password = $data['password'];
+        $model->image = $image[0]->name;
+        // var_dump($model);
+        // die;
+        if($model->save())
         {
+            echo "OK";
+        } 
+        else {
+            echo 'Fuck';
+        }
+        die;
 
+
+        if ($model->load(Yii::$app->request->post()) && $model->image = $image[0]->name && $model->imageFiles = $image[0]->name )
+        {
+           //var_dump($model);
             if($model->save())
             {
                 echo "OK";
-            } else {
+            } 
+            else {
                 echo 'Fuck';
             }
             // $img = $model->emptyImage();
@@ -89,5 +114,12 @@ class UsersController extends Controller
         return $this->render('edit', ['model' => $model]);
     }
 
+    public function actionDelete($id)
+    {
+        $rezult = SignupForm::delete($id);
+        
+        return $this->redirect('/admin/users');
+
+    }
     
 }

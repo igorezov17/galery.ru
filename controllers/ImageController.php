@@ -9,7 +9,9 @@ use app\models\Image;
 use yii\web\UploadedFile;
 use yii\web\Controller;
 use app\models\admin\images\ImageFrm;
-
+use app\models\image\ImageValid;
+use app\models\login\Valid;
+use Phar;
 
 class ImageController extends Controller
 {
@@ -34,30 +36,29 @@ class ImageController extends Controller
 
     public function actionRatota($id)
     {
-        $temp = tempnam(sys_get_temp_dir(), 'prefix');
-
-        $data = Image::findOne($id);
-
-        //define image path
-        // $filename="image.jpg";
-
-        // var_dump($data->filepath);
+        $model = new Photos();
+        $image = $model->getOne($id);
+        // var_dump($image->image);
         // die;
-        // Load the image
-        $source = imagecreatefromjpeg($data->filepath);
 
-        // Rotate
-        $rotate = imagerotate($source, 90, 0);
+        $path = '/uploads/'.$image->image;
+  
+// echo $path;
+// die;
+        $filename = $image->image;
 
-        //and save it on your server...
-        imagejpeg($rotate, $temp);
-        // var_dump($data);exit();
-        unlink($data->filepath);
-        $data->filepath = 'uploads/'.md5_file($temp). '.' .$data->extension;
-        rename($temp, $data->filepath); // системный вызов из ниоткуда в никуда
 
-        $data->save();
-        return $this->redirect(['userimage']);
+        $source = imagecreatefromjpeg($path);
+
+       $a=  imagerotate($source, 90, 0);
+
+        imagejpeg($a, $path);
+        return $this->redirect(['/image/user-image']);
+
+// $img = imagecreatefromjpeg($image);    // Картинка
+//     $degrees = 90;                         //Наклон картинки
+//     $imgRotated = imagerotate($img, $degrees, 0);
+//     imagejpeg($imgRotated, $new_image, 90); 
     }
 
     public function actionView($id)
@@ -89,7 +90,28 @@ class ImageController extends Controller
 
     public function actionCreate()
     {
-        return $this->render('create');
+        $model = new ImageValid();
+        $image = UploadedFile::getInstances($model, 'image');
+        $categori = Yii::$app->request->post();
+        Yii::$app->user->id;
+        $category = $model->getCategory();
+        // var_dump($categori['category_id']);
+        // die;
+        if($model->load(Yii::$app->request->post())  && $model->image = $image[0]->name)
+        {
+            $model->saveimage(Yii::$app->user->id, $categori['category_id']);
+            //echo "oks";
+            return $this->redirect(['/image/user-image']);
+        }
+    
+        return $this->render('create', ['model' => $model, 'categories' => $category]);
+    }
+
+    public function actionDelete($id)
+    {
+        $model = new Photos();
+        $model->deleteImage($id);
+        return $this->redirect(['/image/user-image']);
     }
 
 

@@ -1,6 +1,8 @@
 <?php
 
 use yii\helpers\Html;
+use yii\widgets\Menu;
+use yii\widgets\ActiveForm;
 
 ?>
       <section class="hero is-warning">
@@ -24,56 +26,37 @@ use yii\helpers\Html;
                 Спасибо! Картинка успешно загружена!
             </div>-->
             <?php //echo flash(); ?>
-          <form action="/photo/store" method="GET" enctype="multipart/form-data">
-            <div class="field">
-              
-              <label>Name</label>
-              <div class="control">
-                <input class="input" type="text" name="name"> 
-              </div>
-            </div>
+          <!-- <form action="/photo/store" method="GET" enctype="multipart/form-data"> -->
+          <?php $form = ActiveForm::begin(['id' => 'form-signup', 'options' => ['enctype' => 'multipart/form-data']]); ?>
 
-            <div class="field">
-              <label>Description</label>
-              <div class="control">
-                <textarea class="textarea" name="desc"></textarea>
-              </div>
-            </div>
-            
-            <!-- <div class="field">
-              <label class="label">Выберите категорию</label>
+                <?= $form->field($model, 'title')->textInput() ?>
+
+                <?= $form->field($model, 'description') ?>
+
+                <?= $form->field($model, 'image[]')->fileInput(['multiple' => true, 'accept' => 'image/*']) ?>
+
+                <div class="field">
+              <label >Выберите категорию</label>
               <div class="control">
                 <div class="select">
                   <select name="category_id">
+                    <?php foreach ($categories as $category): ?>
+                    <option value="<?= $category['id'] ?>"><?=$category['title']; ?></option>
 
+                    <?php endforeach; ?>
                   </select>
                 </div>
               </div>
-            </div> -->
-
-            <div class="field">
-              <label>Image</label>
-              <div class="file is-normal has-name">
-                <label class="file-label">
-                  <input class="file-input" type="file" name="resume">
-                  <span class="file-cta">
-                    <span class="file-icon">
-                      <i class="fas fa-upload"></i>
-                    </span>
-                    <span class="file-label">
-                      File
-                    </span>
-                  </span>
-                </label>
-              </div>
             </div>
 
-            <div class="field is-grouped">
-              <div class="control">
-                <button class="button is-success is-large">Загрузить</button>
-              </div>
-            </div>
-                    </form>
+                <div class="form-group">
+                    <?= Html::submitButton('Signup', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
+                </div>
+
+
+
+            <?php ActiveForm::end(); ?>
+                    <!-- </form> -->
           </div>
           <div class="column"></div>
         </div>

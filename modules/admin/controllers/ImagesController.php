@@ -4,7 +4,7 @@ namespace app\modules\admin\controllers;
 
 use yii\web\Controller;
 use app\models\Image;
-use app\models\ImageFrm;
+use app\models\admin\images\ImageFrm;
 
 /**
  * Default controller for the `admin` module

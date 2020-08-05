@@ -15,6 +15,8 @@ class SignupForm extends Model
     public $password;
     public $repeatPassword;
     public $imageFiles;
+    public $image;
+
 
     const SCENARIO_ADMIN_CREATE = "users_edit";
     const SCENARIO_REG = "users_reg";
@@ -24,7 +26,7 @@ class SignupForm extends Model
     public function scenarios()
     {
         return [
-            self::SCENARIO_ADMIN_CREATE => ['username', 'email', 'password', 'imageFiles'],
+            self::SCENARIO_ADMIN_CREATE => ['username', 'email', 'password', 'imageFiles', 'image'],
             self::SCENARIO_REG => ['username', 'email', 'password', 'repeatPassword'],
             self::SCENARIO_INFO_UPDATE => ['username', 'email'],
             self::SCENARIO_SECURITY_UPDATE => ['password'],
@@ -37,6 +39,8 @@ class SignupForm extends Model
             [['username', 'email', 'password'], 'required'],
             [['repeatPassword'], 'required'],
             [['imageFiles'], 'required'],
+            [['imageFiles'], 'trim'],
+            [['image'], 'trim'],
             [['username'], 'trim'],
             [['username'], 'string', 'min' =>2,'max'=>255],
             [['email'], 'email'],
@@ -102,6 +106,12 @@ class SignupForm extends Model
     {
         $sql = 'SELECT * FROM imageAdmin WHERE id = 1';
         return Yii::$app->db->createCommand($sql)->queryOne();
+    }
+
+    public static function delete($id)
+    {
+        $sql = "DELETE FROM users WHERE id = :id";
+        return Yii::$app->db->createCommand($sql)->bindValue(':id', $id)->execute();
     }
 
 

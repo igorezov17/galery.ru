@@ -38,7 +38,7 @@ use yii\helpers\Url;
                         <a href="<?= Url::toRoute(['image/ratota', 'id'=>$image['id']]); ?>" class="button is-warning">
                           <i class="fa fa-edit">Ratota</i>
                         </a>
-                        <a href="category.html" class="button is-danger">
+                        <a href="/image/delete/<?php echo $image['id']; ?> " class="button is-danger">
                           <i class="fa fa-times">Delete</i>
                         </a>
                       </p>
