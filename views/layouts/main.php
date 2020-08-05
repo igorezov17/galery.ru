@@ -97,7 +97,7 @@ AppImage::register($this);
                                 </p>
                             </div>
                             <p class="control">
-                                <a class="button is-info" href="/user/info?>">
+                                <a class="button is-info" href="/user/info">
                                   <span class="icon">
                                     <i class="fas fa-user"></i>
 

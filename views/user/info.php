@@ -27,10 +27,19 @@ use yii\widgets\ActiveForm;
               <div class="is-clearfix"></div>
                 <div class="columns is-centered">
                   <div class="column is-half">
+                  <?php if( Yii::$app->session->hasFlash('success')){
+                      echo Yii::$app->session->getFlash('success');
+                  } else {
+                    echo Yii::$app->session->getFlash('warning');
+                  }
+                  
+                  ?>
+                  
+                  <?php $form = ActiveForm::begin(['id' => 'form-signup', 'options' => ['enctype' => 'multipart/form-data']]); ?>
                     <div class="field">
-                    <h6>Name</h6>
+                    <!-- <h6>Name</h6> -->
                       <div class="control has-icons-left has-icons-right">
-                        <input class="input" type="text" value="marlin">
+                      <?= $form->field($model, 'username')->textInput() ?>
                         <span class="icon is-small is-left">
                           <i class="fas fa-user"></i>
                         </span>
@@ -40,8 +49,8 @@ use yii\widgets\ActiveForm;
                     <div class="field">
 
                       <div class="control has-icons-left has-icons-right">
-                      <h6>Email</h6>
-                        <input class="input" type="text" value="rahim@marlindev.ru">
+                      <!-- <h6>Email</h6> -->
+                      <?= $form->field($model, 'email') ?>
                         <span class="icon is-small is-left">
                           <i class="fas fa-user"></i>
                         </span>
@@ -49,9 +58,9 @@ use yii\widgets\ActiveForm;
                     </div>
 
                     <div class="field">
-                    <h6>Avatar</h6>
+                    <!-- <h6>Avatar</h6> -->
                                 <div class="control has-icons-left has-icons-right">
-                                    <input class="input" type="file" name="image"> <br> <br>
+                                <?= $form->field($model, 'image[]')->fileInput(['multiple' => true, 'accept' => 'image/*']) ?> <br> <br>
                                     <img src="../uploads/<?= $user['image'] ?>" alt="">
                                 </div>
                             </div>
@@ -59,6 +68,7 @@ use yii\widgets\ActiveForm;
                     <div class="control">
                       <button class="button is-link">Обновить</button>
                     </div>
+                    <?php ActiveForm::end(); ?>
                   </div>
                 </div>
             </div>

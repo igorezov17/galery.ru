@@ -15,7 +15,6 @@ use Phar;
 
 class ImageController extends Controller
 {
-    //public $layout = 'galer';
 
     public function actionIndex()
     {

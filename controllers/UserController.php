@@ -5,29 +5,49 @@ namespace app\controllers;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
+use app\models\user\UsersValid;
+use yii\web\UploadedFile;
 use app\models\Users;
 use app\controllers\behaviors\AccessBehavior;
 
 
 class UserController extends Controller
 {
-    public function checkAccess()
-    {
-        return [
-            'access' => [
-                'class' => AccessBehavior::className(),
-                'rules' => [
-                    'actions' => ['security'],
-                    'allow' => true,
-                    'roles' => '*',
-                ],
-            ],
-        ];
-    }
+    // public function checkAccess()
+    // {
+    //     return [
+    //         'access' => [
+    //             'class' => AccessBehavior::className(),
+    //             'rules' => [
+    //                 'actions' => ['security', ],
+    //                 'allow' => true,
+    //                 'roles' => '*',
+    //             ],
+    //         ],
+    //     ];
+    // }
 
     public function actionInfo()
     {
-        return $this->render('info');
+        $model = new UsersValid();
+        $image = UploadedFile::getInstances($model, 'image');
+        if ($model->load(Yii::$app->request->post()) && $model->image = $image[0]->name)
+        {
+            if ($model->saveUser(Yii::$app->user->id))
+            {
+                Yii::$app->session->setFlash('success', 'Вы успешно изменили свои данные');
+                return $this->redirect('/user/info');
+            } 
+            else
+            {
+                Yii::$app->session->setFlash('warning', 'Упс, что-то пошла не так');
+                return $this->redirect('/user/info');
+            }
+
+
+        }
+
+        return $this->render('info', ['model' => $model]);
     }
 
     public function actionSecurity()
