@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?= $form->field($model, 'title')->textInput() ?>
 
-                <?= $form->field($model, 'description') ?>
+                <?= $form->field($model, 'description')->textarea() ?>
 
                 <?= $form->field($model, 'image[]')->fileInput(['multiple' => true, 'accept' => 'image/*']) ?>
 

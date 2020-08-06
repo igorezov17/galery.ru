@@ -9,14 +9,12 @@ use app\models\Users;
 
 class SignupForm extends Model
 {
-
     public $username;
     public $email;
     public $password;
     public $repeatPassword;
     public $imageFiles;
     public $image;
-
 
     const SCENARIO_ADMIN_CREATE = "users_edit";
     const SCENARIO_REG = "users_reg";
@@ -47,8 +45,6 @@ class SignupForm extends Model
             [['password'], 'string', 'min'=>4],
             [['repeatPassword'], 'resetPassword'], // собственный валидатор для проверки сходства двуз паролей
             [['email'], 'unique', 'targetClass' => Users::className(),],
-            //[['imageFiles'], 'file', 'extensions' => 'png, jpg, jpeg']
-
         ];
     }
 
@@ -62,8 +58,6 @@ class SignupForm extends Model
 
     public function save()
     {
-        // var_dump($this->imageFiles);
-        // die;
         if ($this->validate())
         {
             $user = new Users();
@@ -75,16 +69,6 @@ class SignupForm extends Model
                 $this->imageFiles = $this->emptyImage();    
                 $user->image = $this->imageFiles['title'];
             }
-            // var_dump($user->username);
-            // echo "<br>";
-            // var_dump($user->email);
-            // echo "<br>";
-            // var_dump($user->password);
-            // echo "<br>";
-            // var_dump($user->image);
-            // echo "<br>";
-            // var_dump($user);
-            //die;
             $sql = "INSERT INTO users(username, email, password, image) VALUES (:username, :email, :password, :imageFile)";
             $rez = Yii::$app->db->createCommand($sql)
                 ->bindValue(':username', $user->username)
@@ -93,11 +77,7 @@ class SignupForm extends Model
                 ->bindValue(':imageFile', $user->image)
                 ->execute();
             return $rez;
-            
-            // return $user->save();
-
         } else {
-
             return !$this->hasErrors();
         }
     }
@@ -113,6 +93,4 @@ class SignupForm extends Model
         $sql = "DELETE FROM users WHERE id = :id";
         return Yii::$app->db->createCommand($sql)->bindValue(':id', $id)->execute();
     }
-
-
 }

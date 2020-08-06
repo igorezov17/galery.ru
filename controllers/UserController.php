@@ -6,6 +6,7 @@ use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use app\models\user\UsersValid;
+use app\models\user\PassValid;
 use yii\web\UploadedFile;
 use app\models\Users;
 use app\controllers\behaviors\AccessBehavior;
@@ -52,6 +53,7 @@ class UserController extends Controller
 
     public function actionSecurity()
     {
+        $model = new PassValid();
 
         return $this->render('security');
     }

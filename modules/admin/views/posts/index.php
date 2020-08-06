@@ -26,7 +26,7 @@ Create
         <td><?= $post->description; ?></td>
         <td><img src="<?= "/uploads/" . $post->image; ?>" alt="" width="200"></td>
         <td>
-            <a href="photos/<?php echo $post['id']; ?>/edit" class="btn btn-warning">
+            <a href="/admin/posts/update/<?php echo $post->id; ?>" class="btn btn-warning">
             <i class="fa fa-pencil"></i>
             Update
             </a>

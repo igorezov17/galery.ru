@@ -22,11 +22,11 @@ Create
         <td><?= $image->description; ?></td>
         <td><img src="<?= "/uploads/" . $image->image; ?>" alt="" width="200"></td>
         <td>
-            <a href="photos/<?php echo $user['id']; ?>/edit" class="btn btn-warning">
+            <a href="/admin/images/update/<?php echo $image->id; ?>?>/edit" class="btn btn-warning">
             <i class="fa fa-pencil"></i>
             Update
             </a>
-            <a href="photos/<?php echo $user['id']; ?>/delete" class="btn btn-danger" onclick="return confirm('Вы уверены?');">
+            <a href="/admin/images/delete/<?php echo $image->id; ?>" class="btn btn-danger" onclick="return confirm('Вы уверены?');">
             <i class="fa fa-remove"></i>
             Delete
             </a>

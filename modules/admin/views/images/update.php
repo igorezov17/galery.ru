@@ -4,7 +4,7 @@
 /* @var $model \frontend\models\SignupForm */
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
-$this->title = 'Create user';
+$this->title = 'Update Image';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-signup">

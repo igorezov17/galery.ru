@@ -49,6 +49,7 @@ class UsersController extends Controller
         // echo "</pre>";
         // die;
         //echo "Welcome In first in Admin";
+
         return $this->render('index', ['users' => $users]);
     }
 
@@ -117,9 +118,7 @@ class UsersController extends Controller
     public function actionDelete($id)
     {
         $rezult = SignupForm::delete($id);
-        
         return $this->redirect('/admin/users');
-
     }
     
 }

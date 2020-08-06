@@ -4,7 +4,7 @@
 /* @var $model \frontend\models\SignupForm */
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
-$this->title = 'Update Post';
+$this->title = 'Update Posts';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-signup">
@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?= $form->field($model, 'title')->textInput() ?>
 
-                <?= $form->field($model, 'description') ?>
+                <?= $form->field($model, 'description')->textarea() ?>
 
                 <?= $form->field($model, 'image[]')->fileInput(['multiple' => true, 'accept' => 'image/*']) ?>
 

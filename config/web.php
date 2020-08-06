@@ -71,24 +71,19 @@ $config = [
                 '/image/delete/<id:\d+>/' => '/image/delete',
                 '/image/ratota/<id:\d+>' => '/image/ratota',
                 //admin
-                '/admin/users/'=>'/modules/admin/users/index',
+                '/admin/users/'=>'/admin/users/index',
                 '/admin/users/delete/<id:\d+>'=>'/admin/users/delete',
 
-                '/admin/posts/'=>'/modules/admin/posts/index',
-                '/admin/posts/edit/'=>'/modules/admin/posts/edit/',
+                '/admin/posts/'=>'/admin/posts/index',
+                '/admin/posts/edit/'=>'/admin/posts/edit/',
+                '/admin/posts/delete/<id:\d+>'=>'/admin/posts/delete/',
+                '/admin/posts/update/<id:\d+>'=>'/admin/posts/update/',
 
-                '/admin/image/'=>'/modules/admin/image/index',
-                '/admin/images/edit/'=>'/modules/admin/images/edit',
-                '/admin/images/update/'=>'/modules/admin/images/update',
-                '/forum/about/' => '/modules/forum/about',
-                
-
-
-
-                // 'hello' => 'test/hello',
-                // 'image/get-image/<id:\d+>' => 'image/get-image'
-                // 'admin' => ''
-
+                '/admin/image/'=>'/admin/image/index',
+                '/admin/images/edit/'=>'/admin/images/edit',
+                '/admin/images/update/<id:\d+>'=>'/admin/images/update',
+                '/admin/images/delete/<id:\d+>'=>'/admin/images/delete',
+ 
             ],
         ],
         

@@ -10,6 +10,7 @@ class UsersValid extends Model
     public $username;
     public $email;
     public $image;
+    public $password;
 
     public function rules()
     {
@@ -19,6 +20,14 @@ class UsersValid extends Model
         ];
     }
 
+
+    /**
+     * Undocumented function
+     *
+     * @param [type] $id
+     * @return void
+     * changed user's: username, email, image
+     */
     public function saveUser($id)
     {
         if ($this->validate())
@@ -34,5 +43,17 @@ class UsersValid extends Model
             echo "fuck user";    
         }
 
+    }
+
+    /**
+     * 
+     * changed user's: password
+     */
+    public function savePass()
+    {
+        $sql = "UPDATE users SET password = :password";
+        return Yii::$app->db->createCommand()
+                    ->bindValue(':password', $this->password)
+                    ->execute();
     }
 }
