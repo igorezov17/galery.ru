@@ -21,6 +21,19 @@ class PostValid extends Model
         ];
     }
 
+    public function editPost()
+    {
+        if ($this->validate())
+        {
+            $sql = "INSERT INTO news(title, description, image) VALUES (:title, :description, :image)";
+            return Yii::$app->db->createCommand($sql)
+                                ->bindValue(':title', $this->title)
+                                ->bindValue(':description', $this->description)
+                                ->bindValue(':image', $this->image)
+                                ->execute();
+        }
+    }
+
     public function updatePost($id)
     {
         if ($this->validate())
@@ -35,7 +48,7 @@ class PostValid extends Model
         } 
         else
         {
-            echo "That is bad";
+            return false;
         }
 
     }
@@ -47,16 +60,5 @@ class PostValid extends Model
                     ->bindValue(':id', $id)
                     ->execute();
 
-    }
-
-
-    public function editPost()
-    {
-        $sql = "INSERT INTO news(title, description, image) VALUES (:title, :description, :image)";
-        return Yii::$app->db->createCommand($sql)
-                            ->bindValue(':title', $this->title)
-                            ->bindValue(':description', $this->description)
-                            ->bindValue(':image', $this->image)
-                            ->execute();
     }
 }

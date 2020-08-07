@@ -83,9 +83,11 @@ class PostsController extends Controller
         $data = Yii::$app->request->post();
         if ($model->load(Yii::$app->request->post()) && $model->image = $image[0]->name)
         {
-            $model->updatePost($id);
-            Yii::$app->session->setFlash('success', 'Пост успешно обновлен');
-            return $this->redirect('/admin/posts');
+            if ($model->updatePost($id))
+            {
+                Yii::$app->session->setFlash('success', 'Пост успешно обновлен');
+                return $this->redirect('/admin/posts');
+            }
         }
         return $this->render('update', ['model' => $model]);
     }
