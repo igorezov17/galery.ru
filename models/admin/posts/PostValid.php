@@ -25,12 +25,16 @@ class PostValid extends Model
     {
         if ($this->validate())
         {
+
             $sql = "INSERT INTO news(title, description, image) VALUES (:title, :description, :image)";
             return Yii::$app->db->createCommand($sql)
                                 ->bindValue(':title', $this->title)
                                 ->bindValue(':description', $this->description)
                                 ->bindValue(':image', $this->image)
                                 ->execute();
+        } else
+        {
+            return false;
         }
     }
 

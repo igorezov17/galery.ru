@@ -57,12 +57,13 @@ class PostsController extends Controller
     {
         $model = new PostValid();
         $image = UploadedFile::getInstances($model, 'image');
-        if (Yii::$app->request->post())
+        if ($model->load(Yii::$app->request->post()) && $model->image = $image[0]->name)
         {
-            var_dump(Yii::$app->request->post());
-            echo "<br>";
-            var_dump($image[0]->name);
-            die;
+            if ($model->editPost())
+            {
+                Yii::$app->session->setFlash('success', 'Новый пост добавлен');
+                return $this->redirect('/admin/posts');
+            } 
         }
         return $this->render('edit', ['model' => $model]);
     }
