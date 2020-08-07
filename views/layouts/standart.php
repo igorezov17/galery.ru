@@ -40,7 +40,7 @@ AppAsset::register($this);
         'items' => [
             ['label' => 'Главная', 'url'=>['/image']],
             // ['label' => 'Test', 'url'=>['/test/hello']],
-            ['label' => 'News', 'url'=>['/news/all']],
+            ['label' => 'News', 'url'=>['/news/']],
             ['label' => 'Login', 'url' => ['/login/login-up']],
             ['label' => 'Registration', 'url' => ['/register/sign-up']]
 

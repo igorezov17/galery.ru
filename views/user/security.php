@@ -38,7 +38,6 @@ use yii\widgets\ActiveForm;
                   
                   <?php $form = ActiveForm::begin(['id' => 'form-signup', 'options' => ['enctype' => 'multipart/form-data']]); ?>
                     <div class="field">
-                    <h6>Parol</h6>
                       <div class="control has-icons-left has-icons-right">
                       <?php echo $form->field($model, 'oldpassword')->passwordInput(); ?>
                         <span class="icon is-small is-left">
@@ -48,9 +47,8 @@ use yii\widgets\ActiveForm;
                     </div>
 
                     <div class="field">
-                    <h6>New Parol</h6>
                       <div class="control has-icons-left has-icons-right">
-                      <?php echo $form->field($model, 'password')->passwordInput(); ?>
+                      <?php echo $form->field($model, 'newpassword')->passwordInput(); ?>
                         <span class="icon is-small is-left">
                           <i class="fas fa-user"></i>
                         </span>
@@ -58,9 +56,8 @@ use yii\widgets\ActiveForm;
                     </div>
 
                     <div class="field">
-                    <h6>Turn Parol</h6>
                       <div class="control has-icons-left has-icons-right">
-                      <?php echo $form->field($model, 'secondpassword')->passwordInput(); ?>
+                      <?php echo $form->field($model, 'repeatPassword')->passwordInput(); ?>
                         <span class="icon is-small is-left">
                           <i class="fas fa-user"></i>
                         </span>
@@ -68,9 +65,9 @@ use yii\widgets\ActiveForm;
                     </div>
 
 
-                    <div class="control">
-                      <button class="button is-link">Обновить</button>
-                    </div>
+                <div class="form-group">
+                    <?= Html::submitButton('Update', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
+                </div>
                   </div>
                   <?php ActiveForm::end(); ?>
                 </div>

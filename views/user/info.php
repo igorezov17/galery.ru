@@ -63,11 +63,11 @@ use yii\widgets\ActiveForm;
                                 <?= $form->field($model, 'image[]')->fileInput(['multiple' => true, 'accept' => 'image/*']) ?> <br> <br>
                                     <img src="../uploads/<?= $user['image'] ?>" alt="">
                                 </div>
-                            </div>
+                                </div>
 
-                    <div class="control">
-                      <button class="button is-link">Обновить</button>
-                    </div>
+                <div class="form-group">
+                    <?= Html::submitButton('Update', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
+                </div>
                     <?php ActiveForm::end(); ?>
                   </div>
                 </div>

@@ -26,12 +26,8 @@ class Valid extends Model
         $users = new Users();
         if ($this->validate())
         {
-
             $user_log = $users->getUser($this->email);
-;
             return Yii::$app->user->login($user_log);
-
-
         } 
     }
 

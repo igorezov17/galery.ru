@@ -25,7 +25,7 @@ use yii\helpers\Url;
               <div class="card">
                 <div class="card-image">
                   <figure class="image is-4by3">
-                    <a href="photo.html">
+                    <a href="/image/view/<?php echo $image['id'] ?>">
                       <img src="../uploads/<?php echo $image['image']; ?>" alt="Placeholder image">
                     </a>
                   </figure>

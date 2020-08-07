@@ -18,17 +18,12 @@ class LoginController extends Controller
 
         $model = new Valid();
         $post = Yii::$app->request->post();
-        
-
            if( $model->load(Yii::$app->request->post()) && $model->login())
            {
                     return $this->redirect('/');
            } else {
             return $this->render('logform', ['model'=>$model]);
            }
-
-           
-       
     }
 
 }

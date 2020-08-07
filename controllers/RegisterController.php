@@ -14,17 +14,13 @@ class RegisterController extends Controller
 
     public function actionSignUp()
     {
-
         $model = new SignupForm();
         $model->scenario = SignupForm::SCENARIO_REG;
         if ($model->load(Yii::$app->request->post()) && $model->save())
         {
-
             Yii::$app->session->setFlash('success', 'Вы успешно зарегестрировались');
             return $this->redirect('/login/login-up');
-            
         }
-
         return $this->render('signup', ['model' => $model]);
     }    
 

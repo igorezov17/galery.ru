@@ -94,12 +94,10 @@ class ImageController extends Controller
         $categori = Yii::$app->request->post();
         Yii::$app->user->id;
         $category = $model->getCategory();
-        // var_dump($categori['category_id']);
-        // die;
+
         if($model->load(Yii::$app->request->post())  && $model->image = $image[0]->name)
         {
             $model->saveimage(Yii::$app->user->id, $categori['category_id']);
-            //echo "oks";
             return $this->redirect(['/image/user-image']);
         }
     

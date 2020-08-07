@@ -68,7 +68,6 @@ class PostsController extends Controller
         return $this->render('edit', ['model' => $model]);
     }
 
-
     /**
      * Undocumented function
      *
@@ -92,7 +91,6 @@ class PostsController extends Controller
         }
         return $this->render('update', ['model' => $model]);
     }
-
 
     /**
      * Undocumented function

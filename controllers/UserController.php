@@ -54,8 +54,25 @@ class UserController extends Controller
     public function actionSecurity()
     {
         $model = new PassValid();
+        $data = Yii::$app->request->post();
+        $id = Yii::$app->user->id;
+        if ($model->load(Yii::$app->request->post()))
+        {
+            // var_dump($data);
 
-        return $this->render('security');
+            // echo "<br>";
+            // var_dump($id);
+            if ($model->updatePass($id))
+            {
+                echo "Oks";
+            } 
+            else
+            {
+                echo "That is bad";
+            }
+            die; 
+        }
+        return $this->render('security', ['model' => $model]);
     }
 
     public function actionLogout()
@@ -98,10 +115,13 @@ class UserController extends Controller
         // var_dump(Yii::$app->user->getId());
         // die;
 
-        $userRole = Yii::$app->authManager->getRole('content');
-        Yii::$app->authManager->assign($userRole, Yii::$app->user->getId());
 
-        return True;
+
+
+        // $userRole = Yii::$app->authManager->getRole('content');
+        // Yii::$app->authManager->assign($userRole, Yii::$app->user->getId());
+
+        // return True;
 
         //return $this->redirect('/');
     }

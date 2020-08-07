@@ -4,6 +4,7 @@ namespace app\models\user;
 
 use Yii;
 use yii\base\Model;
+use app\models\login\Users;
 
 class UsersValid extends Model
 {
@@ -16,7 +17,8 @@ class UsersValid extends Model
     {
         return [
             [['username'], 'trim'],
-            [['email'], 'email']
+            [['email'], 'email'],
+            [['email'], 'unique', 'targetClass' => Users::className(),],
         ];
     }
 
@@ -49,11 +51,5 @@ class UsersValid extends Model
      * 
      * changed user's: password
      */
-    public function savePass()
-    {
-        $sql = "UPDATE users SET password = :password";
-        return Yii::$app->db->createCommand()
-                    ->bindValue(':password', $this->password)
-                    ->execute();
-    }
+
 }

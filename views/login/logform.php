@@ -39,5 +39,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php ActiveForm::end(); ?>
 
-
+<?php for($i=0;$i<16;$i++)
+{
+    echo "<br>";
+} 
+?>
 </div>

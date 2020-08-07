@@ -70,6 +70,9 @@ $config = [
                 '/' => 'image/index',
                 '/image/delete/<id:\d+>/' => '/image/delete',
                 '/image/ratota/<id:\d+>' => '/image/ratota',
+
+                '/user' => '/user/info',
+
                 //admin
                 '/admin/users/'=>'/admin/users/index',
                 '/admin/users/delete/<id:\d+>'=>'/admin/users/delete',

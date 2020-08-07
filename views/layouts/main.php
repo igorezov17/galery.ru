@@ -97,7 +97,7 @@ AppImage::register($this);
                                 </p>
                             </div>
                             <p class="control">
-                                <a class="button is-info" href="/user/info">
+                                <a class="button is-info" href="/user">
                                   <span class="icon">
                                     <i class="fas fa-user"></i>
 
@@ -147,7 +147,7 @@ AppImage::register($this);
       <footer class="section hero is-light">
           <div class="container">
             <div class="content has-text-centered">
-              <div class="tabs">
+              <!-- <div class="tabs">
                 <ul>
                   <li class="is-active"><a>Главная</a></li>
                   <li><a>Природа</a></li>
@@ -160,7 +160,7 @@ AppImage::register($this);
                   <li><a>Дизайн и Интерьер</a></li>
                   <li><a>Животные</a></li>
                 </ul>
-              </div>
+              </div> -->
               <p>
                 <strong>Marlin</strong> - Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit expedita consequatur, et. Unde, nulla, dicta.
               </p>
