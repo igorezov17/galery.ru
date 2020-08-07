@@ -14,8 +14,13 @@ use app\models\admin\posts\PostValid;
  */
 class PostsController extends Controller
 {
-
-
+    /**
+     * Undocumented function
+     *
+     * @return void
+     * 
+     * домтуп к измению статьи имеет только админ и контент менеджер
+     */
     public function behaviors()
     {
         return [
@@ -23,7 +28,7 @@ class PostsController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index', 'edit', 'update'],
+                        'actions' => ['index', 'edit', 'update', 'delete'],
                         'allow' => true,
                         'roles' => ['content', 'admin'],
                     ],
@@ -31,6 +36,7 @@ class PostsController extends Controller
             ]
         ];
     }
+
     /**
      * Renders the index view for the module
      * @return string
@@ -38,11 +44,15 @@ class PostsController extends Controller
     public function actionIndex()
     {
         $posts = News::getAll();
-        //echo "Welcome In first in Admin";
         return $this->render('index', ['posts' => $posts]);
     }
 
-
+    /**
+     * Undocumented function
+     *
+     * @return void
+     * Создание нового поста
+     */
     public function actionEdit()
     {
         $model = new PostValid();
@@ -58,20 +68,37 @@ class PostsController extends Controller
     }
 
 
+    /**
+     * Undocumented function
+     *
+     * @param [type] $id
+     * @return void
+     * 
+     * Изменение существующего поста
+     */
     public function actionUpdate($id)
     {
         $model = new PostValid();
         $image = UploadedFile::getInstances($model, 'image');
-        if (Yii::$app->request->post())
+        $data = Yii::$app->request->post();
+        if ($model->load(Yii::$app->request->post()) && $model->image = $image[0]->name)
         {
-            var_dump(Yii::$app->request->post());
-            echo "<br>";
-            var_dump($image[0]->name);
-            die;
+            $model->updatePost($id);
+            Yii::$app->session->setFlash('success', 'Пост успешно обновлен');
+            return $this->redirect('/admin/posts');
         }
         return $this->render('update', ['model' => $model]);
     }
 
+
+    /**
+     * Undocumented function
+     *
+     * @param [type] $id
+     * @return void
+     * 
+     * удаление текущего поста
+     */
     public function actionDelete($id)
     {
         $rezult = PostValid::deletePost($id);

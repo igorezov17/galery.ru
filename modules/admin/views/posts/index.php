@@ -30,7 +30,7 @@ Create
             <i class="fa fa-pencil"></i>
             Update
             </a>
-            <a href="<?php echo $post['id']; ?>/delete" class="btn btn-danger" onclick="return confirm('Вы уверены?');">
+            <a href="/admin/posts/delete/<?php echo $post['id']; ?>" class="btn btn-danger" onclick="return confirm('Вы уверены?');">
             <i class="fa fa-remove"></i>
             Delete
             </a>
