@@ -1,10 +1,9 @@
 <?php 
 
-use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+  use yii\helpers\Html;
+  use yii\widgets\ActiveForm;
 
-?>
-        
+?>   
         <div class="columns">
             <div class="column">
               <div class="tabs is-centered pt-100">
@@ -27,15 +26,13 @@ use yii\widgets\ActiveForm;
               <div class="is-clearfix"></div>
                 <div class="columns is-centered">
                   <div class="column is-half">
-                 
-                  <?php if( Yii::$app->session->hasFlash('success')){
-                      echo Yii::$app->session->getFlash('success');
-                  } else {
-                    echo Yii::$app->session->getFlash('warning');
-                  }
-                  
+                  <?php 
+                        if( Yii::$app->session->hasFlash('success')){
+                          echo Yii::$app->session->getFlash('success');
+                        } else {
+                          echo Yii::$app->session->getFlash('warning');
+                        }  
                   ?>
-                  
                   <?php $form = ActiveForm::begin(['id' => 'form-signup', 'options' => ['enctype' => 'multipart/form-data']]); ?>
                     <div class="field">
                       <div class="control has-icons-left has-icons-right">
@@ -63,8 +60,6 @@ use yii\widgets\ActiveForm;
                         </span>
                       </div>
                     </div>
-
-
                 <div class="form-group">
                     <?= Html::submitButton('Update', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
                 </div>

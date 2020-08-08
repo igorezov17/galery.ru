@@ -31,10 +31,8 @@ use yii\widgets\ActiveForm;
                       echo Yii::$app->session->getFlash('success');
                   } else {
                     echo Yii::$app->session->getFlash('warning');
-                  }
-                  
+                  }  
                   ?>
-                  
                   <?php $form = ActiveForm::begin(['id' => 'form-signup', 'options' => ['enctype' => 'multipart/form-data']]); ?>
                     <div class="field">
                     <!-- <h6>Name</h6> -->

@@ -18,10 +18,19 @@ class PassValid extends Model
         return [
             [['oldpassword', 'newpassword', 'repeatPassword'], 'required'],
             [['newpassword', 'repeatPassword'], 'string', 'min' => 4],
-            //[['repeatPassword'], 'resetPassword'],
+            // [['repeatPassword'], 'resetPassword'],
         ];
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param [type] $attributes
+     * @param [type] $params
+     * @return void
+     * 
+     * Валидотор для проверки нового пароля и повторно введенного
+     */
     public function resetPassword($attributes, $params)
     {
         if ($this->oldpassword != $this->repeatPassword)
@@ -30,31 +39,46 @@ class PassValid extends Model
         }
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param [type] $id
+     * @return void
+     * 
+     * Проверка валидации и сверка на совпадение введеного пароля в указанным в БД
+     * Обновление пароля
+     */
     public function updatePass($id)
     {
+        $user = new Users();
+        $user = $user->getUser($id);
 
-        if ($this->validate())
+        if ($this->validate() && Yii::$app->security->validatePassword($this->oldpassword, $user['password']))
         {
-            $user = Users::find()->where(['id'=>$id])->one();
-            var_dump($this->newpassword);
-            echo "<br>";
-            var_dump($user);
-            die;
-
-            //Yii::$app->security->validatePassword($this->newpassword, $user->password);
-            // то что в таблице $user->password
-        } else 
+            $password = Yii::$app->security->generatePasswordHash($this->newpassword);
+            return $this->savePass($id, $password);
+        } 
+        else 
         {
-            return false;
+           return false;
         }
     }
 
-    public function savePass()
+    /**
+     * Undocumented function
+     *
+     * @param [type] $id
+     * @param [type] $pass
+     * @return void
+     * 
+     * Запрос на обновление данных
+     */
+    private function savePass($id, $pass)
     {
-        $sql = "UPDATE users SET password = :password";
-        return Yii::$app->db->createCommand()
-                    ->bindValue(':password', $this->password)
+        $sql = "UPDATE users SET password = :password WHERE id = :id";
+        return Yii::$app->db->createCommand($sql)
+                    ->bindValue(':id', $id)
+                    ->bindValue(':password', $pass)
                     ->execute();
     }
-
 }

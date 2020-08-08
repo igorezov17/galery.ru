@@ -58,17 +58,16 @@ class UserController extends Controller
         $id = Yii::$app->user->id;
         if ($model->load(Yii::$app->request->post()))
         {
-            // var_dump($data);
 
-            // echo "<br>";
-            // var_dump($id);
             if ($model->updatePass($id))
             {
-                echo "Oks";
+                Yii::$app->session->setFlash('success', 'Вы успешно изменили свои данные');
+                return $this->redirect('/user/security');
             } 
             else
             {
-                echo "That is bad";
+                Yii::$app->session->setFlash('warning', 'Упс, что-то пошла не так');
+                return $this->redirect('/user/security');
             }
             die; 
         }

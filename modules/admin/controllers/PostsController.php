@@ -59,7 +59,7 @@ class PostsController extends Controller
         $image = UploadedFile::getInstances($model, 'image');
         if ($model->load(Yii::$app->request->post()) && $model->image = $image[0]->name)
         {
-            if ($model->editPost())
+            if ($model->editObt())
             {
                 Yii::$app->session->setFlash('success', 'Новый пост добавлен');
                 return $this->redirect('/admin/posts');
@@ -83,7 +83,7 @@ class PostsController extends Controller
         $data = Yii::$app->request->post();
         if ($model->load(Yii::$app->request->post()) && $model->image = $image[0]->name)
         {
-            if ($model->updatePost($id))
+            if ($model->updateObt($id))
             {
                 Yii::$app->session->setFlash('success', 'Пост успешно обновлен');
                 return $this->redirect('/admin/posts');
@@ -102,7 +102,7 @@ class PostsController extends Controller
      */
     public function actionDelete($id)
     {
-        $rezult = PostValid::deletePost($id);
+        $rezult = PostValid::deleteObt($id);
         return $this->redirect('/admin/posts/index');
     }
   
