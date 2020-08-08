@@ -79,8 +79,9 @@ $config = [
 
                 '/admin/posts/'=>'/admin/posts/index',
                 '/admin/posts/edit/'=>'/admin/posts/edit/',
-                '/admin/posts/delete/<id:\d+>'=>'/admin/posts/delete/',
                 '/admin/posts/update/<id:\d+>'=>'/admin/posts/update/',
+                '/admin/posts/delete/<id:\d+>'=>'/admin/posts/delete/',
+
 
                 '/admin/image/'=>'/admin/image/index',
                 '/admin/images/edit/'=>'/admin/images/edit',

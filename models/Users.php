@@ -13,11 +13,9 @@ class Users extends ActiveRecord
     public $password;
     public $image;
 
-
     public static function tableName()
     {
         return '{{users}}';
-
     } 
 
     public static function getAll()
@@ -28,19 +26,11 @@ class Users extends ActiveRecord
         return $data;
     }
 
-
-    // public function rules()
-    // {
-    //     return [
-    //         [['username', 'email', 'password', 'image'], 'required'],
-    //         [['username'], 'string', 'min'=> 2],
-    //         [['email'], 'email'],
-    //         [['password'], 'string', 'min'=>2,],
-    //         [['image'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg, jpeg'],
-            
-    //     ];
-    // }
-
-
-
+    public function getUser($id)
+    {
+        $sql = "SELECT password FROM users WHERE id=:id";
+        return Yii::$app->db->createCommand($sql)
+                        ->bindValue('id', $id)
+                        ->queryOne();
+    }
 }

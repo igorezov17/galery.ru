@@ -4,8 +4,9 @@ namespace app\models\admin\posts;
 
 use Yii;
 use yii\base\Model;
+use app\models\admin\ModelAdminInterface;
 
-class PostValid extends Model
+class PostValid extends Model implements ModelAdminInterface
 {
     public $title;
     public $description;
@@ -21,7 +22,7 @@ class PostValid extends Model
         ];
     }
 
-    public function editPost()
+    public function editObt()
     {
         if ($this->validate())
         {
@@ -38,7 +39,7 @@ class PostValid extends Model
         }
     }
 
-    public function updatePost($id)
+    public function updateObt($id)
     {
         if ($this->validate())
         {
@@ -57,7 +58,7 @@ class PostValid extends Model
 
     }
 
-    public static function deletePost($id)
+    public static function deleteObt($id)
     {
         $sql = "DELETE FROM news WHERE id = :id";
         return Yii::$app->db->createCommand($sql)
