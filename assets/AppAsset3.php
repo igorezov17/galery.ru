@@ -28,10 +28,9 @@ class AppAsset3 extends AssetBundle
         'css/select2.min.css',
         'css/skin-purple.min.css',
         'css/walstyl.css',
+        'css/slide.css',
 
 
-
-        //'css/style.css',
     ];
     public $js = [
         //'js/scripts.js',

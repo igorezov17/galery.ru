@@ -26,9 +26,17 @@ class Users extends ActiveRecord
         return $data;
     }
 
-    public function getUser($id)
+    public function getPass($id)
     {
         $sql = "SELECT password FROM users WHERE id=:id";
+        return Yii::$app->db->createCommand($sql)
+                        ->bindValue('id', $id)
+                        ->queryOne();
+    }
+
+    public function getUser($id)
+    {
+        $sql = "SELECT * FROM users WHERE id=:id";
         return Yii::$app->db->createCommand($sql)
                         ->bindValue('id', $id)
                         ->queryOne();

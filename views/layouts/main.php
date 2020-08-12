@@ -1,9 +1,5 @@
 <?php
 
-/* @var $this \yii\web\View */
-/* @var $content string */
-
-
 use app\widgets\Alert;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
@@ -33,7 +29,7 @@ AppImage::register($this);
         <nav class="navbar is-transparent">
           <div class="navbar-brand">
             <a class="navbar-item" href="/image">
-              <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+              <img src="/uploads/bulma-logo.png" width="112" height="28">
             </a>
             <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
               <span></span>
@@ -50,14 +46,14 @@ AppImage::register($this);
 
               <a class="navbar-item" href="/news/index">
                 Новости
-              </a>
-
-              
+              </a>              
               </div>
             </div>
-              
             <?php if (!(Yii::$app->user->isGuest)) { ?>
               <div class="dropdown is-hoverable">
+              <div class="navbar-end">
+              <div class="navbar-item">
+                <div class="field is-grouped">
                                 <div class="dropdown-trigger">
                                     <button class="button is-primary" aria-haspopup="true" aria-controls="dropdown-menu4">
                                         <span>Управление</span>
@@ -66,6 +62,9 @@ AppImage::register($this);
                                           </span>
                                     </button>
                                 </div>
+                                </div>
+                              </div>
+                              </div>
                                 <div class="dropdown-menu" id="dropdown-menu4" role="menu">
                                     <div class="dropdown-content">
                                         <div class="dropdown-item manager-links">
@@ -80,9 +79,9 @@ AppImage::register($this);
 
                                             <p class="control">
                                                 <a class="button" href="/image/user-image">
-                                                      <span class="icon">
+                                                      <!-- <span class="icon">
                                                         <i class="fas fa-image"></i>
-                                                      </span>
+                                                      </span> -->
                                                     <span>Моя галерея</span>
                                                 </a>
                                             </p>
@@ -96,12 +95,15 @@ AppImage::register($this);
                                      
                                 </p>
                             </div>
+                            <div class="navbar-end">
+                            <div class="navbar-item">
+                            <div class="field is-grouped">
                             <p class="control">
-                                <a class="button is-info" href="/user">
-                                  <span class="icon">
+                                <a class="button is-info" href="/user/profile">
+                                  <!-- <span class="icon">
                                     <i class="fas fa-user"></i>
 
-                                  </span>
+                                  </span> -->
                                     <span>Профиль</span>
                                 </a>
                             </p>
@@ -113,6 +115,9 @@ AppImage::register($this);
                                     <span>Выйти</span>
                                 </a>
                             </p>
+                            </div>
+                            </div>
+                            </div>
               <?php } else { ?>
             <div class="navbar-end">
               <div class="navbar-item">
@@ -140,9 +145,6 @@ AppImage::register($this);
           </div>
         </nav>
       </div>
-     
-
-
       <?= $content ?>
       <footer class="section hero is-light">
           <div class="container">

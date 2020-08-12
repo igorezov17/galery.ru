@@ -6,7 +6,6 @@ use yii\base\Behavior;
 
 class MyBehavior extends Behavior
 {
-
     public $first = 'first';
     public $second = 'second';
 

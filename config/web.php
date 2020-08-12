@@ -68,10 +68,14 @@ $config = [
 
 
                 '/' => 'image/index',
+                '/image/slide' => '/image/slide',
                 '/image/delete/<id:\d+>/' => '/image/delete',
                 '/image/ratota/<id:\d+>' => '/image/ratota',
+                '/image/download/<id:\d+>' => '/image/download',
 
-                '/user' => '/user/info',
+                '/user/profile' => '/user/profile',
+                '/user/info' => '/user/info',
+                '/user/security' => '/user/security',
 
                 //admin
                 '/admin/users/'=>'/admin/users/index',

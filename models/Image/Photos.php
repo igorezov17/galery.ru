@@ -9,6 +9,7 @@ use yii\db\ActiveRecord;
 
 class Photos extends ActiveRecord
 {
+
     public static function getAllImage()
     {
 
@@ -39,7 +40,8 @@ class Photos extends ActiveRecord
         $sql = "SELECT
                     photos.id as id, 
                     users.username as username, 
-                    photos.image as imagename, 
+                    photos.image as imagename,
+                    photos.description as desc, 
                     photos.image as img, 
                     photos.date as date, 
                     category.title as categname 

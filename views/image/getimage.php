@@ -38,15 +38,15 @@ use yii\helpers\Url;
                     </figure>
                   </div>
                     <p class="title is-4">
-                      Добавил: <a href="#">marlin</a>
+                      Добавил: <a href="/user/profile"><?php echo $userimage[0]['username']; ?></a>
                     </p>
                 </div>
 
                 <div class="content">
-                  Это был наш первый день у океана. Потрясающий снимок. Самый лучший момент в моей жизни.
+                <?php echo $userimage['0']['desc']; ?>
                   <br>
-                  <time datetime="2016-1-1" class="is-size-6 is-pulled-left">Добавлено: 12.02.2018</time>
-                  <a href="#" class="button is-info is-pulled-right">Скачать</a>
+                  <time datetime="2016-1-1" class="is-size-6 is-pulled-left">Добавлено: <?php echo $userimage[0]['date']; ?></time>
+                  <a href="/image/download/<?php echo $userimage['0']['id']; ?>" class="button is-info is-pulled-right">Скачать</a>
                   <div class="is-clearfix"></div>
                 </div>
               </div>
@@ -60,7 +60,7 @@ use yii\helpers\Url;
 
         <div class="columns">
           <div class="column">
-            <h1 class="title">Другие фотографии от <a><?php echo $userimage[0]['username']; ?></a></h1>
+            <h1 class="title">Другие фотографии от <a href="/user/profile"><?php echo $userimage[0]['username']; ?></a></h1>
           </div>
         </div>
 

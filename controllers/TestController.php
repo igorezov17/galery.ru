@@ -126,4 +126,30 @@ class TestController extends Controller
 
         die;
     }
+
+    public function actionRatota($id)
+    {
+        $model = new Photos();
+        $image = $model->getOne($id);
+        // var_dump($image->image);
+        // die;
+
+        $path = '/uploads/'.$image->image;
+  
+
+        $filename = $image->image;
+
+
+        $source = imagecreatefromjpeg($path);
+
+       $a=  imagerotate($source, 90, 0);
+
+        imagejpeg($a, $path);
+        return $this->redirect(['/image/user-image']);
+
+        // $img = imagecreatefromjpeg($image);    // Картинка
+        // $degrees = 90;                         //Наклон картинки
+        // $imgRotated = imagerotate($img, $degrees, 0);
+        // imagejpeg($imgRotated, $new_image, 90); 
+    }
 }

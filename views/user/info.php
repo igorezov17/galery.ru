@@ -9,6 +9,12 @@ use yii\widgets\ActiveForm;
             <div class="column">
               <div class="tabs is-centered pt-100">
                 <ul>
+                <li>
+                    <a href="/user/profile">
+                      <span class="icon is-small"><i class="fas fa-user"></i></span>
+                      <span>Профиль</span>
+                    </a>
+                  </li>
                   <li class="is-active">
                     <a href="/user/info">
                       <span class="icon is-small"><i class="fas fa-user"></i></span>
@@ -38,17 +44,6 @@ use yii\widgets\ActiveForm;
                     <!-- <h6>Name</h6> -->
                       <div class="control has-icons-left has-icons-right">
                       <?= $form->field($model, 'username')->textInput() ?>
-                        <span class="icon is-small is-left">
-                          <i class="fas fa-user"></i>
-                        </span>
-                      </div>
-                    </div>
-
-                    <div class="field">
-
-                      <div class="control has-icons-left has-icons-right">
-                      <!-- <h6>Email</h6> -->
-                      <?= $form->field($model, 'email') ?>
                         <span class="icon is-small is-left">
                           <i class="fas fa-user"></i>
                         </span>

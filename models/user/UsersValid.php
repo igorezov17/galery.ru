@@ -9,7 +9,6 @@ use app\models\login\Users;
 class UsersValid extends Model
 {
     public $username;
-    public $email;
     public $image;
     public $password;
 
@@ -17,11 +16,9 @@ class UsersValid extends Model
     {
         return [
             [['username'], 'trim'],
-            [['email'], 'email'],
-            [['email'], 'unique', 'targetClass' => Users::className(),],
+            // [['email'], 'unique', 'targetClass' => Users::className(),],
         ];
     }
-
 
     /**
      * Undocumented function
@@ -34,22 +31,15 @@ class UsersValid extends Model
     {
         if ($this->validate())
         {
-            $sql = "UPDATE users SET username = :username, email = :email, image = :image WHERE id = :id";
+            $sql = "UPDATE users SET username = :username, image = :image WHERE id = :id";
             return Yii::$app->db->createCommand($sql)
                                 ->bindValue(':username', $this->username)
-                                ->bindValue(':email', $this->email)
                                 ->bindValue(':image', $this->image)
                                 ->bindValue(':id', $id)
                             ->execute();
         } else {
-            echo "fuck user";    
+            return false; 
         }
-
     }
-
-    /**
-     * 
-     * changed user's: password
-     */
 
 }

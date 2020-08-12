@@ -8,6 +8,12 @@
             <div class="column">
               <div class="tabs is-centered pt-100">
                 <ul>
+                <li>
+                    <a href="/user/profile">
+                      <span class="icon is-small"><i class="fas fa-user"></i></span>
+                      <span>Профиль</span>
+                    </a>
+                  </li>
                   <li>
                     <a href="/user/info">
                       <span class="icon is-small"><i class="fas fa-user"></i></span>

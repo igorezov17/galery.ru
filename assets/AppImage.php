@@ -24,7 +24,8 @@ class AppImage extends AssetBundle
         //'css/style.css',
         'css/bulma.css',
         'css/app.css',
-        'css/bootstrap.min.css',   
+        'css/bootstrap.min.css',  
+        'css/slide.css', 
         // 'css/bootstrap.min.css',
         // 'css/style.css',
 

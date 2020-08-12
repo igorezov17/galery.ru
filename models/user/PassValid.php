@@ -18,7 +18,7 @@ class PassValid extends Model
         return [
             [['oldpassword', 'newpassword', 'repeatPassword'], 'required'],
             [['newpassword', 'repeatPassword'], 'string', 'min' => 4],
-            // [['repeatPassword'], 'resetPassword'],
+            [['repeatPassword'], 'resetPassword'],
         ];
     }
 
@@ -33,7 +33,7 @@ class PassValid extends Model
      */
     public function resetPassword($attributes, $params)
     {
-        if ($this->oldpassword != $this->repeatPassword)
+        if ($this->newpassword != $this->repeatPassword)
         {
             $this->addError($attributes, "Пароли не совпадают");
         }
@@ -51,7 +51,7 @@ class PassValid extends Model
     public function updatePass($id)
     {
         $user = new Users();
-        $user = $user->getUser($id);
+        $user = $user->getPass($id);
 
         if ($this->validate() && Yii::$app->security->validatePassword($this->oldpassword, $user['password']))
         {

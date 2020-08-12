@@ -3,30 +3,29 @@
 namespace app\controllers;
 
 use Yii;
-use yii\filters\AccessControl;
 use yii\web\Controller;
 use app\models\user\UsersValid;
 use app\models\user\PassValid;
 use yii\web\UploadedFile;
 use app\models\Users;
-use app\controllers\behaviors\AccessBehavior;
-
 
 class UserController extends Controller
 {
-    // public function checkAccess()
-    // {
-    //     return [
-    //         'access' => [
-    //             'class' => AccessBehavior::className(),
-    //             'rules' => [
-    //                 'actions' => ['security', ],
-    //                 'allow' => true,
-    //                 'roles' => '*',
-    //             ],
-    //         ],
-    //     ];
-    // }
+
+    /**
+     * Основная информация о пользователе
+     */
+    public function actionProfile()
+    {
+        $id = Yii::$app->user->id;
+        $users = new Users();
+        $users = $users->getUser($id);
+        return $this->render('profile', ['users' => $users]);
+    }
+
+    /**
+     * Возможность пользователя менять свое имя и аватарку
+     */
 
     public function actionInfo()
     {
@@ -44,13 +43,15 @@ class UserController extends Controller
                 Yii::$app->session->setFlash('warning', 'Упс, что-то пошла не так');
                 return $this->redirect('/user/info');
             }
-
-
         }
-
         return $this->render('info', ['model' => $model]);
     }
 
+    /**
+     * 
+     * Возможность пользователя менять свой пароль
+     * 
+     */
     public function actionSecurity()
     {
         $model = new PassValid();
@@ -58,7 +59,6 @@ class UserController extends Controller
         $id = Yii::$app->user->id;
         if ($model->load(Yii::$app->request->post()))
         {
-
             if ($model->updatePass($id))
             {
                 Yii::$app->session->setFlash('success', 'Вы успешно изменили свои данные');
@@ -74,6 +74,12 @@ class UserController extends Controller
         return $this->render('security', ['model' => $model]);
     }
 
+
+    /**
+     * 
+     * Выход из учетной записи
+     * 
+     */
     public function actionLogout()
     {
         Yii::$app->user->logout();
@@ -86,6 +92,8 @@ class UserController extends Controller
      *
      * @return void
      * getRole and die
+     * 
+     * Установка ролей
      */
     public function actionRole()
     {
@@ -113,9 +121,7 @@ class UserController extends Controller
         
         // var_dump(Yii::$app->user->getId());
         // die;
-
-
-
+        /////////////////////////////
 
         // $userRole = Yii::$app->authManager->getRole('content');
         // Yii::$app->authManager->assign($userRole, Yii::$app->user->getId());

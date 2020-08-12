@@ -13,7 +13,5 @@ class AccessBehavior extends Behavior
         {
             return $this->redirect('/');
         }
-
-        
     }
 }

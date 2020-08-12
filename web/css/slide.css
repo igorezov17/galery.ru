@@ -1,0 +1,90 @@
+ * {
+    margin:0;
+    padding: 0;
+}
+
+body {
+    background-color: #fff;
+}
+
+.slider {
+    width: 400px;
+    height: 400px;
+    overflow: hidden;
+    border:10px solid black;
+}
+
+.middle {
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+/*Нижние кнопки  */
+.navigation {
+    position: absolute;  /*позиция*/
+    bottom: 16px; /*чтобы прилепить кнопки к низу слайдера*/
+    left: 50%; /*слева отодвинем на 50%*/
+    transform: translateX(-50%); /*центрация по горизонтали*/
+    display: flex;
+}
+
+/*раположение  и обтекание*/
+.bar{
+    height: 8px;
+    width: 30px;
+    margin: 6px;
+    cursor: pointer; 
+    background-color: #ddd;
+    opacity: .5; /*прозрачность*/
+    border-radius: 10px; /*загругленные на углах*/
+    transition: all .4s ease; /*transion для анимации (отвечает за скорость)*/   
+}
+
+/*Анимация при наведении*/
+.bar:hover {
+    opacity: 1; /*будет становится менее прозрачным*/
+    transform: scale(1.1); /*будет становится больше*/
+}
+
+/*скрываем точки в верхнем левом углу*/
+input[name="r"] {
+    position: absolute;
+    visibility: hidden;
+}
+
+.slides {
+    width: 400%;
+    height: 100%;
+    display: flex;
+}
+
+/*необходимая анимация*/
+.slide {
+    width: 25%; /*делаем, чтобы картнка была по рабзмеру окна*/
+    transition: all .6s ease;
+}
+ 
+/*картинка находится строго в границах слайдера*/
+.slide img {
+    width: 100%;
+    height: 100%;
+}
+
+#r1:checked ~ .s1 {
+    margin-left: 0;
+}
+
+#r2:checked ~ .s1 {
+    margin-left: -25%;
+}
+
+#r3:checked ~ .s1 {
+    margin-left: -50%;
+}
+
+#r4:checked ~ .s1 {
+    margin-left: -75%;
+}
