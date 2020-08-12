@@ -20,10 +20,7 @@ class ImageController extends Controller
     public function actionIndex()
     {
         $image = new Photos();
-        $images = $image->getAllImage();
-
-        //$sql = "SELECT users.usename as username, photos.title as imagename,  ";
-        
+        $images = $image->getAllImage();        
         return $this->render('index', ['images' => $images]);
     }
 
@@ -44,7 +41,7 @@ class ImageController extends Controller
 
     /**
      * Undocumented function
-     *
+     * Изображения загруженные текущим пользователем
      * @return void
      */
     public function actionUserImage()
@@ -56,7 +53,6 @@ class ImageController extends Controller
     public function actionSlide()
     {
         $model = Image::find()->all();
-
         return $this->render('slide', ['image', $model]);
     }
 
@@ -90,6 +86,22 @@ class ImageController extends Controller
         $model = new Photos();
         $model->deleteImage($id);
         return $this->redirect(['/image/user-image']);
+    }
+
+    /**
+     * Undocumented function
+     * Скачивание изображения
+     * @param [type] $id
+     * @return void
+     */
+    public function actionDownload($id)
+    {
+        $model = new Photos();
+        $image = $model->getOne($id);
+        $path = './uploads/'.$image->image;
+        header('Content-Type:'.pathinfo($path, PATHINFO_EXTENSION));
+        header('Content-Disposition: filename='.$path);
+        return readfile($path);
     }
 
     /**
