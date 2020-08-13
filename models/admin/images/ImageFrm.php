@@ -14,8 +14,6 @@ class ImageFrm extends Model
     public $title;
     public $description;
     public $image;
-    //public $user_id;
-
 
     public function behaviors()
     {
@@ -40,8 +38,7 @@ class ImageFrm extends Model
     {
         if ($this->validate())
         {
-            $image = new Photo();
-            
+            $image = new Photo();    
         }
     }
 

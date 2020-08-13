@@ -12,7 +12,6 @@ class Photos extends ActiveRecord
 
     public static function getAllImage()
     {
-
         $sql = "SELECT
                     photos.id as id, 
                     photos.title as imagename, 
@@ -21,8 +20,6 @@ class Photos extends ActiveRecord
                     category.title as categname 
                 FROM photos LEFT JOIN category on photos.category_id = category.id ";
            return Yii::$app->db->createCommand($sql)->queryAll();
-        // $photos = self::find()->all();
-        // return $photos;
     }
 
     public static function getOne($id)
@@ -32,7 +29,6 @@ class Photos extends ActiveRecord
             ->one();
         return $photo;
     }
-
 
     public function userImage($id)
     {

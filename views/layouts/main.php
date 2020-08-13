@@ -78,7 +78,7 @@ AppImage::register($this);
                                             </p>
 
                                             <p class="control">
-                                                <a class="button" href="/image/user-image">
+                                                <a class="button" href="/image/user-image/<?php echo Yii::$app->user->id; ?>">
                                                       <!-- <span class="icon">
                                                         <i class="fas fa-image"></i>
                                                       </span> -->

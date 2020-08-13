@@ -26,7 +26,6 @@ class UserController extends Controller
     /**
      * Возможность пользователя менять свое имя и аватарку
      */
-
     public function actionInfo()
     {
         $model = new UsersValid();
@@ -48,9 +47,7 @@ class UserController extends Controller
     }
 
     /**
-     * 
      * Возможность пользователя менять свой пароль
-     * 
      */
     public function actionSecurity()
     {
@@ -76,9 +73,7 @@ class UserController extends Controller
 
 
     /**
-     * 
      * Выход из учетной записи
-     * 
      */
     public function actionLogout()
     {
@@ -89,10 +84,8 @@ class UserController extends Controller
 
     /**
      * Undocumented function
-     *
      * @return void
      * getRole and die
-     * 
      * Установка ролей
      */
     public function actionRole()
@@ -123,12 +116,11 @@ class UserController extends Controller
         // die;
         /////////////////////////////
 
-        // $userRole = Yii::$app->authManager->getRole('content');
+        // $userRole = Yii::$app->authManager->getRole('banned');
         // Yii::$app->authManager->assign($userRole, Yii::$app->user->getId());
 
         // return True;
 
         //return $this->redirect('/');
     }
-
 }

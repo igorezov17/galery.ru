@@ -46,7 +46,8 @@ class ImageController extends Controller
      */
     public function actionUserImage()
     {
-        $images = Photos::find()->all();
+        $model = new Image();
+        $images = $model->getImageUser(Yii::$app->user->id);
         return $this->render('userimage', ['images' => $images]);
     }
 
@@ -69,8 +70,14 @@ class ImageController extends Controller
 
         if($model->load(Yii::$app->request->post())  && $model->image = $image[0]->name)
         {
+            // var_dump($model);
+            // echo "<br>";
+            // var_dump(Yii::$app->user->id);
+            // echo "<br>";
+            // var_dump($categori['category_id']);
+            // die;
             $model->saveimage(Yii::$app->user->id, $categori['category_id']);
-            return $this->redirect(['/image/user-image']);
+            return $this->redirect('/image/user-image');
         }
         return $this->render('create', ['model' => $model, 'categories' => $category]);
     }

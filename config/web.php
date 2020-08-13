@@ -73,6 +73,8 @@ $config = [
                 '/image/ratota/<id:\d+>' => '/image/ratota',
                 '/image/download/<id:\d+>' => '/image/download',
 
+                '/image/user-image' => '/image/user-image/',
+
                 '/user/profile' => '/user/profile',
                 '/user/info' => '/user/info',
                 '/user/security' => '/user/security',

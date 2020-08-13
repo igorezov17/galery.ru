@@ -16,16 +16,20 @@ class ImagesController extends Controller
 
 
     /**
-     * Renders the index view for the module
+     * Вывод всех изображений в админ панели
      * @return string
      */
     public function actionIndex()
     {
         $images = Image::getAll();
-        //echo "Welcome In first in Admin";
         return $this->render('index', ['images' => $images]);
     }
 
+    /**
+     * Undocumented function
+     * Создание нового изображения
+     * @return void
+     */
     public function actionEdit()
     {
         $model = new ImageFrm();
@@ -37,10 +41,15 @@ class ImagesController extends Controller
             var_dump($image[0]->name);
             die;
         }
-
         return $this->render('edit', ['model' => $model]);
     }
 
+    /**
+     * Undocumented function
+     * Обновление изображения
+     * @param [type] $id
+     * @return void
+     */
     public function actionUpdate($id)
     {
         $model = new ImageFrm();
@@ -55,6 +64,12 @@ class ImagesController extends Controller
         return $this->render('update', ['model' => $model]);
     }
 
+    /**
+     * Undocumented function
+     * Удаление изображения
+     * @param [type] $id
+     * @return void
+     */
     public function actionDelete($id)
     {
         $rezult = ImageFrm::deleteImage($id);

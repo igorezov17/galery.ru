@@ -21,12 +21,13 @@ use yii\helpers\Url;
         <div class="container">
           <div class="columns  is-multiline">
             <?php foreach($images as $image): ?>
+
             <div class="column is-one-quarter">
               <div class="card">
                 <div class="card-image">
                   <figure class="image is-4by3">
                     <a href="/image/view/<?php echo $image['id'] ?>">
-                      <img src="../uploads/<?php echo $image['image']; ?>" alt="Placeholder image">
+                      <img src="/uploads/<?php echo $image['image']; ?>" alt="Placeholder image">
                     </a>
                   </figure>
                 </div>

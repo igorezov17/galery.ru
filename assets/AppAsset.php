@@ -25,10 +25,6 @@ class AppAsset extends AssetBundle
         // 'css/bulma.css',
         // 'css/app.css',
         // 'css/bootstrap.min.css',    
-
-
-
-
         //'css/style.css',
     ];
     public $js = [

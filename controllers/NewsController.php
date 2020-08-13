@@ -12,17 +12,14 @@ use yii\filters\VerbFilter;
 
 class NewsController extends Controller
 {
-    //public $layout = 'basic';
 
+    /**
+    * Вывод всех новостей
+    */
     public function actionIndex()
     {
         $news = new News;
-        //$posts = $news->getAllNews();
         $posts = News::getAll();
-        // echo "<pre>";
-        // print_r($posts);
-        // echo "</pre>";
-        // die;
         return $this->render('index', ['news' => $posts]);
     }
 }

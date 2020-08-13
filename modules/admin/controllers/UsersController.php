@@ -16,6 +16,11 @@ use yii\filters\AccessControl;
 class UsersController extends Controller
 {
 
+    /**
+     * Undocumented function
+     * Допступ к данному разделу сайта имеет только пользователь с ролью "admin"
+     * @return void
+     */
     public function behaviors()
     {
         return [
@@ -32,11 +37,6 @@ class UsersController extends Controller
         ];
     }
 
-
-    public function actionGetUserRole()
-    {
-        
-    }
     /**
      * Renders the index view for the module
      * @return string
@@ -44,77 +44,43 @@ class UsersController extends Controller
     public function actionIndex()
     {
         $users = Users::getAll();
-        // echo "<pre>";
-        // var_dump($users);
-        // echo "</pre>";
-        // die;
-        //echo "Welcome In first in Admin";
 
         return $this->render('index', ['users' => $users]);
     }
 
+    /**
+     * Undocumented function
+     * Создание нового пользователя
+     * @return void
+     */
     public function actionEdit()
     {
         $model = new SignupForm();
         $model->scenario = SignupForm::SCENARIO_ADMIN_CREATE;
-        //$model->scenario = Users::SCENARIO_ADMIN_CREATE;
         $date = Yii::$app->request->post();
         $image = UploadedFile::getInstances($model, 'imageFiles');
         $model->imageFiles = $image[0]->name;
         $model->image = $image[0]->name;
-        
-        // // var_dump($model->imageFiles);
-        // // die;
-        // // echo "<br>";
-        // $model->username = 'мудак';
-        $data = Yii::$app->request->post('SignupForm');
-        // $image = UploadedFile::getInstances($model, 'imageFiles');
-        // echo "<pre>";
-        // print_r($data['username']);
-        // echo "</pre>";
-        // var_dump($image[0]->name);
-
-        $model->username = $data['username'];
-        $model->email = $data['email'];
-        $model->password = $data['password'];
-        $model->image = $image[0]->name;
-        // var_dump($model);
-        // die;
-        if($model->save())
-        {
-            echo "OK";
-        } 
-        else {
-            echo 'Fuck';
-        }
-        die;
-
 
         if ($model->load(Yii::$app->request->post()) && $model->image = $image[0]->name && $model->imageFiles = $image[0]->name )
         {
-           //var_dump($model);
             if($model->save())
             {
-                echo "OK";
+                return $this->redirect('/admin/users/');
             } 
             else {
-                echo 'Fuck';
+                return $this->redirect('/admin/users/');
             }
-            // $img = $model->emptyImage();
-            // var_dump($img);
-            // die;
-
         }
-        //  else {
-        //     var_dump($model);
-        //     echo "не прошел даже первую проверку";
-        // }
-
-        //if ($model->load(Yii::$app->request->post()));
-
         return $this->render('edit', ['model' => $model]);
     }
 
+    /**
+     * Undocumented function
+     * Удаление пользлвателя
+     * @param [type] $id
+     * @return void
+     */
     public function actionDelete($id)
     {
         $rezult = SignupForm::delete($id);

@@ -12,6 +12,9 @@ class RegisterController extends Controller
 
     public $layout = 'standart'; 
 
+    /***
+     * Регистрация
+     */
     public function actionSignUp()
     {
         $model = new SignupForm();

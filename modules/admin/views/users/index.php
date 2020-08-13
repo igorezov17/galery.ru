@@ -14,6 +14,7 @@ use yii\helpers\Url;
 Create
 </a>
 </div>
+
 <table class="table table-condensed">
     <th>Name</th>
     <th>Email</th>
@@ -46,7 +47,7 @@ Create
 
         ?>
 
-            <?php if ($role->name == 'ban') { ?>
+            <?php if ($role->name == 'banned') { ?>
             
                 <a href="photos/<?php echo $user['id']; ?>/edit" class="btn btn-warning">
                 <i class="fa fa-pencil"></i>

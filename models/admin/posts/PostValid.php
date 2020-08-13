@@ -22,6 +22,9 @@ class PostValid extends Model implements ModelAdminInterface
         ];
     }
 
+    /**
+     * Добавление нового поста
+     */
     public function editObt()
     {
         if ($this->validate())
@@ -39,6 +42,9 @@ class PostValid extends Model implements ModelAdminInterface
         }
     }
 
+    /**
+     * Обновить пост
+     */
     public function updateObt($id)
     {
         if ($this->validate())
@@ -58,6 +64,9 @@ class PostValid extends Model implements ModelAdminInterface
 
     }
 
+    /**
+     * Удалить пост
+     */
     public static function deleteObt($id)
     {
         $sql = "DELETE FROM news WHERE id = :id";

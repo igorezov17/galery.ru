@@ -11,6 +11,4 @@ class Photo extends ActiveRecord
     {
         return "{{photos}}";
     }
-
-
 }

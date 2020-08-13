@@ -18,12 +18,19 @@ class ImageValid extends Model
         return [
             [['title', 'description', 'image'], 'required'],
             [['title', 'description', 'image'], 'trim'],
-
         ];
     }
 
+    /**
+     * Undocumented function
+     * Создание нового изображения
+     * @param [type] $id
+     * @param [type] $category
+     * @return void
+     */
     public function saveimage($id, $category)
     {
+
         if ($this->validate())
         {
             $sql = "INSERT INTO 
@@ -36,12 +43,17 @@ class ImageValid extends Model
                     ->bindValue(':date', date('Y-m-d\TH:i:s'))
                     ->bindValue(':user_id', $id)
                     ->bindValue(':category_id', $category)
-            ->execute();
+                    ->execute();
         } else {
             echo "fuck image";    
         }
     }
 
+    /**
+     * Undocumented function
+     * Получение категории
+     * @return void
+     */
     public function getCategory()
     {
         $sql = "SELECT * FROM category";

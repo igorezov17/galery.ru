@@ -16,6 +16,9 @@ class SignupForm extends Model
     public $imageFiles;
     public $image;
 
+    /**
+     * Список сценариев для работы модели с различными данными
+     */
     const SCENARIO_ADMIN_CREATE = "users_edit";
     const SCENARIO_REG = "users_reg";
     const SCENARIO_INFO_UPDATE = "user_info_update ";
@@ -48,6 +51,14 @@ class SignupForm extends Model
         ];
     }
 
+    /**
+     * Undocumented function
+     *
+     * Провекрка паролей на совпадение
+     * @param [type] $attributes
+     * @param [type] $params
+     * @return void
+     */
     public function resetPassword($attributes, $params)
     {
         if ($this->password != $this->repeatPassword)
@@ -56,6 +67,11 @@ class SignupForm extends Model
         }
     }
 
+    /**
+     * Undocumented function
+     * Создание нового пользователя
+     * @return void
+     */
     public function save()
     {
         if ($this->validate())
@@ -68,6 +84,8 @@ class SignupForm extends Model
             {
                 $this->imageFiles = $this->emptyImage();    
                 $user->image = $this->imageFiles['title'];
+            } else {
+                $user->image = $this->imageFiles;
             }
             $sql = "INSERT INTO users(username, email, password, image) VALUES (:username, :email, :password, :imageFile)";
             $rez = Yii::$app->db->createCommand($sql)
@@ -81,13 +99,24 @@ class SignupForm extends Model
             return !$this->hasErrors();
         }
     }
-        
+
+    /**
+     * Undocumented function
+     * Если картинка пустая, то установить картинку заглушку
+     * @return void
+     */
     public function emptyImage()
     {
         $sql = 'SELECT * FROM imageAdmin WHERE id = 1';
         return Yii::$app->db->createCommand($sql)->queryOne();
     }
 
+    /**
+     * Undocumented function
+     * Удаление пользователя
+     * @param [type] $id
+     * @return void
+     */
     public static function delete($id)
     {
         $sql = "DELETE FROM users WHERE id = :id";
