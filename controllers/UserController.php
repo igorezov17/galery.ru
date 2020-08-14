@@ -8,9 +8,26 @@ use app\models\user\UsersValid;
 use app\models\user\PassValid;
 use yii\web\UploadedFile;
 use app\models\Users;
+use yii\filters\AccessControl;
 
 class UserController extends Controller
 {
+
+    // public function behaviors()
+    // {
+    //     return [
+    //         'access' => [
+    //             'class' => AccessControl::className(),
+    //             'rules' => [
+    //                 [
+    //                     'actions' => ['info', 'profile', 'security', 'logout'],
+    //                     'allow' => true,
+    //                     'roles' => ['admin', 'content', 'user'],
+    //                 ],
+    //             ],
+    //         ]
+    //     ];
+    // }
 
     /**
      * Основная информация о пользователе
@@ -116,7 +133,7 @@ class UserController extends Controller
         // die;
         /////////////////////////////
 
-        // $userRole = Yii::$app->authManager->getRole('banned');
+        // $userRole = Yii::$app->authManager->getRole('user');
         // Yii::$app->authManager->assign($userRole, Yii::$app->user->getId());
 
         // return True;

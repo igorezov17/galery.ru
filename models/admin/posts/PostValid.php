@@ -22,6 +22,12 @@ class PostValid extends Model implements ModelAdminInterface
         ];
     }
 
+    public function beforeValidate()
+    {
+        $this->title = strip_tags($this->title);
+        return parent::beforeValidate();
+    }
+
     /**
      * Добавление нового поста
      */
@@ -73,6 +79,5 @@ class PostValid extends Model implements ModelAdminInterface
         return Yii::$app->db->createCommand($sql)
                     ->bindValue(':id', $id)
                     ->execute();
-
     }
 }

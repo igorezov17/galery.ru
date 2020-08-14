@@ -6,6 +6,7 @@ use Yii;
 use yii\web\Controller;
 use app\models\Image;
 use yii\web\UploadedFile;
+use yii\filters\AccessControl;
 use app\models\admin\images\ImageFrm;
 
 /**
@@ -14,7 +15,21 @@ use app\models\admin\images\ImageFrm;
 class ImagesController extends Controller
 {
 
-
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => ['index', 'edit', 'update', 'delete'],
+                        'allow' => true,
+                        'roles' => ['content', 'admin'],
+                    ],
+                ],
+            ]
+        ];
+    }
     /**
      * Вывод всех изображений в админ панели
      * @return string
@@ -34,12 +49,13 @@ class ImagesController extends Controller
     {
         $model = new ImageFrm();
         $image = UploadedFile::getInstances($model, 'image');
-        if (Yii::$app->request->post())
+        if ($model->load(Yii::$app->request->post()) && $model->image = $image[0]->name)
         {
-            var_dump(Yii::$app->request->post());
-            echo "<br>";
-            var_dump($image[0]->name);
-            die;
+            if ($model->editObt())
+            {
+                Yii::$app->session->setFlash('success', 'Новый пост добавлен');
+                return $this->redirect('/admin/images');
+            } 
         }
         return $this->render('edit', ['model' => $model]);
     }
@@ -54,12 +70,14 @@ class ImagesController extends Controller
     {
         $model = new ImageFrm();
         $image = UploadedFile::getInstances($model, 'image');
-        if (Yii::$app->request->post())
+        $data = Yii::$app->request->post();
+        if ($model->load(Yii::$app->request->post()) && $model->image = $image[0]->name)
         {
-            var_dump(Yii::$app->request->post());
-            echo "<br>";
-            var_dump($image[0]->name);
-            die;
+            if ($model->updateObt($id))
+            {
+                Yii::$app->session->setFlash('success', 'Изображение успешно обновлен');
+                return $this->redirect('/admin/posts');
+            }
         }
         return $this->render('update', ['model' => $model]);
     }
@@ -72,7 +90,7 @@ class ImagesController extends Controller
      */
     public function actionDelete($id)
     {
-        $rezult = ImageFrm::deleteImage($id);
+        $rezult = ImageFrm::deleteObt($id);
         return $this->redirect('/admin/images/index');
     }
 

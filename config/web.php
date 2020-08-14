@@ -81,6 +81,7 @@ $config = [
 
                 //admin
                 '/admin/users/'=>'/admin/users/index',
+                'admin/users/change-role/<id:\d+>/<role:\d+>/' => 'admin/users/change-role',
                 '/admin/users/delete/<id:\d+>'=>'/admin/users/delete',
 
                 '/admin/posts/'=>'/admin/posts/index',

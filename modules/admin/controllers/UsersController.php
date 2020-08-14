@@ -28,7 +28,7 @@ class UsersController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index', 'edit', 'delete'],
+                        'actions' => ['index', 'edit', 'delete', 'change-role'],
                         'allow' => true,
                         'roles' => ['admin'],
                     ],
@@ -43,9 +43,14 @@ class UsersController extends Controller
      */
     public function actionIndex()
     {
-        $users = Users::getAll();
-
+        $users = Users::getUserRole();
         return $this->render('index', ['users' => $users]);
+    }
+
+    public function actionChangeRole($id, $role)
+    {
+        $model = Users::changeRole($id, $role);
+        return $this->redirect('/admin/users');
     }
 
     /**
@@ -66,9 +71,11 @@ class UsersController extends Controller
         {
             if($model->save())
             {
+                Yii::$app->session->setFlash('success', 'Пользователь успешно обновлен');
                 return $this->redirect('/admin/users/');
             } 
             else {
+                Yii::$app->session->setFlash('warning', 'Упс, что-то пошло не так');
                 return $this->redirect('/admin/users/');
             }
         }

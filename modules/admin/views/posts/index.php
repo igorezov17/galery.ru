@@ -22,8 +22,8 @@ Create
 
         ?>
     <tr>
-        <td><?= $post->title; ?></td>
-        <td><?= $post->description; ?></td>
+        <td><?=  Html::encode($post->title); ?></td>
+        <td><?=  Html::encode($post->description); ?></td>
         <td><img src="<?= "/uploads/" . $post->image; ?>" alt="" width="200"></td>
         <td>
             <a href="/admin/posts/update/<?php echo $post->id; ?>" class="btn btn-warning">

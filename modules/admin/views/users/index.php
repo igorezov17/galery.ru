@@ -25,6 +25,7 @@ Create
             // var_dump($users);
             // echo "</pre>";
             // die;
+
     ?>
         <?php $roles = Yii::$app->authManager->getRolesByUser(Yii::$app->user->id); ?>
 
@@ -36,35 +37,37 @@ Create
         }            
         ?>  
     <?php foreach($users as $user): ?>
-    <div class="col-md-10">
+
+    <div class="col-md-10"></div>
         <tr>
-            <th><?= $user['username']; ?></th>
-            <th><?= $user['email']; ?></th>
-            <th><img src="<?= "/uploads/" . $user['image']; ?>" alt="" width="200"></th>
+            <th><?=  Html::encode($user['name']); ?></th>
+            <th><?=  Html::encode($user['email']); ?></th>
+            <th><img src="<?= "/uploads/" .  Html::encode($user['image']); ?>" alt="" width="200"></th>
             <td>
 
         <?php
+            // var_dump($user);
 
         ?>
 
-            <?php if ($role->name == 'banned') { ?>
+            <?php if ($user['role'] == 'banned') { ?>
             
-                <a href="photos/<?php echo $user['id']; ?>/edit" class="btn btn-warning">
+                <a href="/admin/users/change-role/<?php echo $user['id']?>/<?php echo 0; ?>" class="btn btn-danger">
                 <i class="fa fa-pencil"></i>
                 Ban
                 </a>
-            <?php } elseif ($role->name == 'content') { ?>
-                <a href="photos/<?php echo $user['id']; ?>/edit" class="btn btn-primary">
+            <?php } elseif ($user['role'] == 'content') { ?>
+                <a href="#" class="btn btn-primary">
                 <i class="fa fa-pencil"></i>
                 Content
                 </a>
-            <?php } elseif ($role->name == 'admin') { ?>
-                <a href="photos/<?php echo $user['id']; ?>/edit" class="btn btn-dark">
+            <?php } elseif ($user['role'] == 'admin') { ?>
+                <a href="#" class="btn btn-info">
                 <i class="fa fa-pencil"></i>
                 Admin
                 </a>
             <?php } else { ?>
-                <a href="photos/<?php echo $user['id']; ?>/edit" class="btn btn-success">
+                <a href="/admin/users/change-role/<?php echo $user['id']?>/<?php echo 1; ?>" class="btn btn-success">
                 <i class="fa fa-pencil"></i>
                 Active
                 </a>

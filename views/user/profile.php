@@ -40,10 +40,10 @@ use yii\widgets\ActiveForm;
                                   <div class="media">
                                   <div class="media-body">
                                     
-                                    <p><img src="<?php echo "../uploads/" . $users['image']; ?>" class="mr-3" alt="..." width="400" height="400"></p>
-                                    <h3 class="mt-0"><?php echo  $users['username'];  ?></h3> 
+                                    <p><img src="<?php echo "../uploads/" .  Html::encode($users['image']); ?>" class="mr-3" alt="..." width="400" height="400"></p>
+                                    <h3 class="mt-0"><?php echo  Html::encode($users['username']);  ?></h3> 
                                     <p>
-                                    <?php echo $users['email']; ?>
+                                    <?php echo  Html::encode($users['email']); ?>
                                     </p>
                                   </div>
                                 </div>

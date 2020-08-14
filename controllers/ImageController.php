@@ -11,9 +11,25 @@ use yii\web\Controller;
 use app\models\admin\images\ImageFrm;
 use app\models\image\ImageValid;
 use app\models\login\Valid;
+use yii\filters\AccessControl;
 
 class ImageController extends Controller
 {
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => ['index', 'view', 'user-image', 'create', 'delete', 'download', 'ratota'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ]
+        ];
+    }
     /**
      * Главная страница 
      */
@@ -49,12 +65,6 @@ class ImageController extends Controller
         $model = new Image();
         $images = $model->getImageUser(Yii::$app->user->id);
         return $this->render('userimage', ['images' => $images]);
-    }
-
-    public function actionSlide()
-    {
-        $model = Image::find()->all();
-        return $this->render('slide', ['image', $model]);
     }
 
     /**

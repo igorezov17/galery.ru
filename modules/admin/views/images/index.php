@@ -18,8 +18,8 @@ Create
     <th>Action</th>
     <?php foreach($images as $image): ?>
     <tr>
-        <td><?= $image->title; ?></td>
-        <td><?= $image->description; ?></td>
+        <td><?=  Html::encode($image->title); ?></td>
+        <td><?=  Html::encode($image->description); ?></td>
         <td><img src="<?= "/uploads/" . $image->image; ?>" alt="" width="200"></td>
         <td>
             <a href="/admin/images/update/<?php echo $image->id; ?>?>/edit" class="btn btn-warning">

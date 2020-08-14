@@ -27,26 +27,26 @@ use yii\helpers\Url;
             <div class="card">
               <div class="card-image">
                 <figure class="image is-4by3">
-                  <img src="<?php echo "/uploads/" . $image->image ?>" alt="Placeholder image">
+                  <img src="<?php echo "/uploads/" .  Html::encode($image->image) ?>" alt="Placeholder image">
                 </figure>
               </div>
               <div class="card-content">
                 <div class="media">
                   <div class="media-left">
                     <figure class="image is-48x48">
-                      <img src="<?php echo "/uploads/" . $image->image ?>" alt="Placeholder image">
+                      <img src="<?php echo "/uploads/" .  Html::encode($image->image) ?>" alt="Placeholder image">
                     </figure>
                   </div>
                     <p class="title is-4">
-                      Добавил: <a href="/user/profile"><?php echo $userimage[0]['username']; ?></a>
+                      Добавил: <a href="/user/profile"><?php echo Html::encode($userimage[0]['username']); ?></a>
                     </p>
                 </div>
 
                 <div class="content">
-                <?php echo $userimage['0']['desc']; ?>
+                <?php echo  Html::encode($userimage['0']['desc']); ?>
                   <br>
-                  <time datetime="2016-1-1" class="is-size-6 is-pulled-left">Добавлено: <?php echo $userimage[0]['date']; ?></time>
-                  <a href="/image/download/<?php echo $userimage['0']['id']; ?>" class="button is-info is-pulled-right">Скачать</a>
+                  <time datetime="2016-1-1" class="is-size-6 is-pulled-left">Добавлено: <?php echo  Html::encode($userimage[0]['date']); ?></time>
+                  <a href="/image/download/<?php echo  Html::encode($userimage['0']['id']); ?>" class="button is-info is-pulled-right">Скачать</a>
                   <div class="is-clearfix"></div>
                 </div>
               </div>
@@ -81,11 +81,11 @@ use yii\helpers\Url;
                   <div class="media">
                     <div class="media-left">
                   
-                    <p class="title is-5"><a href="#"><?php echo $img['categname']; ?></a></p>
+                    <p class="title is-5"><a href="#"><?php echo  Html::encode($img['categname']); ?></a></p>
                     </div>
                     <div class="media-right">
                       <p  class="is-size-7">Размер: 1280x760</p>
-                      <time datetime="2016-1-1" class="is-size-7">Добавлено: <?php echo $img['date']; ?></time>
+                      <time datetime="2016-1-1" class="is-size-7">Добавлено: <?php echo  Html::encode($img['date']); ?></time>
                     </div>
                   </div>
                 </div>
