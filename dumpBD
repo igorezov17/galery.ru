@@ -1,0 +1,656 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 12.3
+-- Dumped by pg_dump version 12.3
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- Name: adminpack; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS adminpack WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION adminpack; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION adminpack IS 'administrative functions for PostgreSQL';
+
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- Name: auth_assignment; Type: TABLE; Schema: public; Owner: myuser
+--
+
+CREATE TABLE public.auth_assignment (
+    item_name character varying(64) NOT NULL,
+    user_id character varying(64) NOT NULL,
+    created_at integer
+);
+
+
+ALTER TABLE public.auth_assignment OWNER TO myuser;
+
+--
+-- Name: auth_item; Type: TABLE; Schema: public; Owner: myuser
+--
+
+CREATE TABLE public.auth_item (
+    name character varying(64) NOT NULL,
+    type smallint NOT NULL,
+    description text,
+    rule_name character varying(64),
+    data bytea,
+    created_at integer,
+    updated_at integer
+);
+
+
+ALTER TABLE public.auth_item OWNER TO myuser;
+
+--
+-- Name: auth_item_child; Type: TABLE; Schema: public; Owner: myuser
+--
+
+CREATE TABLE public.auth_item_child (
+    parent character varying(64) NOT NULL,
+    child character varying(64) NOT NULL
+);
+
+
+ALTER TABLE public.auth_item_child OWNER TO myuser;
+
+--
+-- Name: auth_rule; Type: TABLE; Schema: public; Owner: myuser
+--
+
+CREATE TABLE public.auth_rule (
+    name character varying(64) NOT NULL,
+    data bytea,
+    created_at integer,
+    updated_at integer
+);
+
+
+ALTER TABLE public.auth_rule OWNER TO myuser;
+
+--
+-- Name: category; Type: TABLE; Schema: public; Owner: myuser
+--
+
+CREATE TABLE public.category (
+    id integer NOT NULL,
+    title character varying(250) DEFAULT NULL::character varying
+);
+
+
+ALTER TABLE public.category OWNER TO myuser;
+
+--
+-- Name: category_id_seq; Type: SEQUENCE; Schema: public; Owner: myuser
+--
+
+CREATE SEQUENCE public.category_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.category_id_seq OWNER TO myuser;
+
+--
+-- Name: category_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: myuser
+--
+
+ALTER SEQUENCE public.category_id_seq OWNED BY public.category.id;
+
+
+--
+-- Name: imageadmin; Type: TABLE; Schema: public; Owner: myuser
+--
+
+CREATE TABLE public.imageadmin (
+    id integer NOT NULL,
+    title character varying(255)
+);
+
+
+ALTER TABLE public.imageadmin OWNER TO myuser;
+
+--
+-- Name: imageadmin_id_seq; Type: SEQUENCE; Schema: public; Owner: myuser
+--
+
+CREATE SEQUENCE public.imageadmin_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.imageadmin_id_seq OWNER TO myuser;
+
+--
+-- Name: imageadmin_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: myuser
+--
+
+ALTER SEQUENCE public.imageadmin_id_seq OWNED BY public.imageadmin.id;
+
+
+--
+-- Name: migration; Type: TABLE; Schema: public; Owner: myuser
+--
+
+CREATE TABLE public.migration (
+    version character varying(180) NOT NULL,
+    apply_time integer
+);
+
+
+ALTER TABLE public.migration OWNER TO myuser;
+
+--
+-- Name: news; Type: TABLE; Schema: public; Owner: myuser
+--
+
+CREATE TABLE public.news (
+    id integer NOT NULL,
+    title character varying(250) DEFAULT NULL::character varying,
+    description text DEFAULT NULL::character varying,
+    image character varying(255) DEFAULT NULL::character varying,
+    date timestamp without time zone,
+    user_id integer,
+    category_id integer
+);
+
+
+ALTER TABLE public.news OWNER TO myuser;
+
+--
+-- Name: news_id_seq; Type: SEQUENCE; Schema: public; Owner: myuser
+--
+
+CREATE SEQUENCE public.news_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.news_id_seq OWNER TO myuser;
+
+--
+-- Name: news_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: myuser
+--
+
+ALTER SEQUENCE public.news_id_seq OWNED BY public.news.id;
+
+
+--
+-- Name: photos; Type: TABLE; Schema: public; Owner: myuser
+--
+
+CREATE TABLE public.photos (
+    id integer NOT NULL,
+    title character varying(250) DEFAULT NULL::character varying,
+    description character varying(255) DEFAULT NULL::character varying,
+    image character varying(255) DEFAULT NULL::character varying,
+    dimensions character varying(255),
+    date timestamp without time zone NOT NULL,
+    user_id integer NOT NULL,
+    category_id integer
+);
+
+
+ALTER TABLE public.photos OWNER TO myuser;
+
+--
+-- Name: photos_id_seq; Type: SEQUENCE; Schema: public; Owner: myuser
+--
+
+CREATE SEQUENCE public.photos_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.photos_id_seq OWNER TO myuser;
+
+--
+-- Name: photos_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: myuser
+--
+
+ALTER SEQUENCE public.photos_id_seq OWNED BY public.photos.id;
+
+
+--
+-- Name: users; Type: TABLE; Schema: public; Owner: myuser
+--
+
+CREATE TABLE public.users (
+    id integer NOT NULL,
+    username character varying(20),
+    email character varying(255),
+    password character varying(255),
+    status integer,
+    verified integer,
+    registered integer,
+    image character varying(255),
+    auth_key character varying(255)
+);
+
+
+ALTER TABLE public.users OWNER TO myuser;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: myuser
+--
+
+CREATE SEQUENCE public.users_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.users_id_seq OWNER TO myuser;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: myuser
+--
+
+ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
+
+
+--
+-- Name: category id; Type: DEFAULT; Schema: public; Owner: myuser
+--
+
+ALTER TABLE ONLY public.category ALTER COLUMN id SET DEFAULT nextval('public.category_id_seq'::regclass);
+
+
+--
+-- Name: imageadmin id; Type: DEFAULT; Schema: public; Owner: myuser
+--
+
+ALTER TABLE ONLY public.imageadmin ALTER COLUMN id SET DEFAULT nextval('public.imageadmin_id_seq'::regclass);
+
+
+--
+-- Name: news id; Type: DEFAULT; Schema: public; Owner: myuser
+--
+
+ALTER TABLE ONLY public.news ALTER COLUMN id SET DEFAULT nextval('public.news_id_seq'::regclass);
+
+
+--
+-- Name: photos id; Type: DEFAULT; Schema: public; Owner: myuser
+--
+
+ALTER TABLE ONLY public.photos ALTER COLUMN id SET DEFAULT nextval('public.photos_id_seq'::regclass);
+
+
+--
+-- Name: users id; Type: DEFAULT; Schema: public; Owner: myuser
+--
+
+ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
+
+
+--
+-- Data for Name: auth_assignment; Type: TABLE DATA; Schema: public; Owner: myuser
+--
+
+COPY public.auth_assignment (item_name, user_id, created_at) FROM stdin;
+admin	14	1595239374
+content	65	1596370858
+content	75	1597341136
+admin	77	1597414042
+user	76	1597412135
+admin	78	1597438699
+user	72	1597325537
+user	79	1597439737
+\.
+
+
+--
+-- Data for Name: auth_item; Type: TABLE DATA; Schema: public; Owner: myuser
+--
+
+COPY public.auth_item (name, type, description, rule_name, data, created_at, updated_at) FROM stdin;
+admin	1	Administration	\N	\N	1595231579	1595231579
+user	1	User	\N	\N	1595231579	1595231579
+content	1	Content Manager	\N	\N	1595231579	1595231579
+banned	1	Banned	\N	\N	1595231579	1595231579
+canAdmin	2	Is admin	\N	\N	1595235709	1595235709
+\.
+
+
+--
+-- Data for Name: auth_item_child; Type: TABLE DATA; Schema: public; Owner: myuser
+--
+
+COPY public.auth_item_child (parent, child) FROM stdin;
+\.
+
+
+--
+-- Data for Name: auth_rule; Type: TABLE DATA; Schema: public; Owner: myuser
+--
+
+COPY public.auth_rule (name, data, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: category; Type: TABLE DATA; Schema: public; Owner: myuser
+--
+
+COPY public.category (id, title) FROM stdin;
+1	nature
+2	city
+4	cars
+5	animals
+3	hitech
+\.
+
+
+--
+-- Data for Name: imageadmin; Type: TABLE DATA; Schema: public; Owner: myuser
+--
+
+COPY public.imageadmin (id, title) FROM stdin;
+1	no-user.png
+\.
+
+
+--
+-- Data for Name: migration; Type: TABLE DATA; Schema: public; Owner: myuser
+--
+
+COPY public.migration (version, apply_time) FROM stdin;
+m190305_143744_create_media1_table	1594713821
+m200714_075824_create_subscriber_table	1594714048
+m140506_102106_rbac_init	1594895094
+m170907_052038_rbac_add_index_on_auth_assignment_user_id	1594895094
+m180523_151638_rbac_updates_indexes_without_prefix	1594895094
+m200409_110543_rbac_update_mssql_trigger	1594895094
+\.
+
+
+--
+-- Data for Name: news; Type: TABLE DATA; Schema: public; Owner: myuser
+--
+
+COPY public.news (id, title, description, image, date, user_id, category_id) FROM stdin;
+3	BMW 5-Series, X1 Electric Models Are on Their Way	As part of BMW goal-setting for reducing future carbon emissions both in vehicles and factories, the company has announced it will offer two more electric vehicles in the coming years, the X1 and 5-series, as it pushes to have 25 electrified models on the road by 2023. Half of those 25 are to be fully electric, BMW has promised.  With this addition, both the X1 and the 5-series will be offered with four powertrain variants; the other three are gasoline with a 48-volt electric system, diesel, and plug-in hybrid versions	newbmw-530e.jpg	\N	\N	4
+4	Reserving a 2021 Ford Bronco? Get Ready To Wait 18 Months to Take Delivery	A big part of Ford massive Bronco revival messaging was that anyone interested in owning one of the upcoming sport-utility vehicles should go plunk down a $100 refundable deposit for either the Bronco or the Bronco Sport.  Ford asked, and people listened. So many, in fact, that getting in line now means an 18-month wait to take delivery.	bronco-urbano.jpg	2020-06-12 18:16:22	\N	4
+6	2021 Genesis G80 Sedan, GV80 SUV U.S. Arrival Delayed until Fall	The well-received 2021 Genesis G80 sedan and GV80-the Korean brand new entry in the premium-SUV category-were set to arrive this summer in the U.S., but the coronavirus pandemic has delayed the beginning of production on both. The G80 and GV80 will now reach dealers this fall, Genesis announced today. Both the G80 and GV80 were revealed in full much earlier this year; the G80 was first seen early in March, and the GV80 back in January. The GV80 is the young brand first SUV and received a great deal of attention when it had its own Super Bowl commercial featuring John Legend and Chrissy Teigen. 	genesis-g80.jpg	2020-06-10 12:52:54	\N	4
+8	Second	First	b71e7920.jpg	\N	\N	\N
+9	dfgdgt	ksenkjnrfjvsndfr jsknfkjvdf sjkfnvrjskd\r\n\r\n\r\n\r\n\r\nskdnvjdnv	4а5квlev.jpg	\N	\N	\N
+14	jkdfnbkjfd djkhfv djkfbv	jkksdbfkjv	1.jpg	\N	\N	\N
+\.
+
+
+--
+-- Data for Name: photos; Type: TABLE DATA; Schema: public; Owner: myuser
+--
+
+COPY public.photos (id, title, description, image, dimensions, date, user_id, category_id) FROM stdin;
+60	Good	ddddfsnvjkdb	7fdgfdcytc.jpg	\N	2020-08-15 21:52:06	78	1
+44	kdskjdkdf	lksdrnger skjdrhgkjse skjdfgh sdkjghwi	5lom7b9zyw.jpg	\N	2020-08-13 16:00:55	72	1
+57	Whale	A small drop in a huge ocean	s12045авыв0 (1).jpg	\N	2020-08-14 23:07:21	77	1
+58	Beauty	Beauty in small things is the main driving force of humanity	ozero-prichal-gory.jpg	\N	2020-08-15 00:25:12	78	1
+59	Technology	New Technology in own	arkuhklfzl.jpg	\N	2020-08-15 11:32:46	78	3
+54	kslbnfkk	kkksndfb	7fdgfdcytc.jpg	\N	2020-08-14 22:12:12	77	4
+47	BMW X5	Very fast car	b71e7920.jpg	\N	2020-08-13 16:27:30	72	3
+\.
+
+
+--
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: myuser
+--
+
+COPY public.users (id, username, email, password, status, verified, registered, image, auth_key) FROM stdin;
+78	Maks	fom@ya.ru	$2y$13$JCMSXKdUFVQlsSRleB5iheUjtV6EJhW.vcoHfR2SPkp.zCFWXnSIu	\N	\N	\N	tqd8g17jqz.png	\N
+79	Bull	umter@mail.ru	$2y$13$FiBr8kzgahVOg2Nf4EdDcukZWDFNNhF542.L0pdsopc7//d6v8zvO	\N	\N	\N	203ао59.jpg	\N
+72	Villa	villa@yandex.ru	$2y$13$3S4S0rOhlY42EYfZ/7h//eCgb46Cmo/RY3pKvNbDV01HcK8b3mX0y	\N	\N	\N	zbo0ft7l3x.jpg	\N
+75	Norton	numtry@ya.ru	$2y$13$HM1oRhvThcrTftZIf0Ib.e1/fjgsG0LKoyaJcQhFh2STDBpg5dFAi	\N	\N	\N	rango.jpg	\N
+76	Fiona	fultm@gmail.com	$2y$13$aSrFLczKLWH9dT13/dd.5.kKfhVj1Nf7hAYIzTl1JxYa9TXGoDpxC	\N	\N	\N	no-user.png	\N
+77	Fred	fric@ma.com	$2y$13$3rhXgpyF/87UZvKt4i160eP/A/odvRCDuMgeRIa5PqRA.rk22TZxK	\N	\N	\N	kisspng69976.jpg	\N
+\.
+
+
+--
+-- Name: category_id_seq; Type: SEQUENCE SET; Schema: public; Owner: myuser
+--
+
+SELECT pg_catalog.setval('public.category_id_seq', 8, true);
+
+
+--
+-- Name: imageadmin_id_seq; Type: SEQUENCE SET; Schema: public; Owner: myuser
+--
+
+SELECT pg_catalog.setval('public.imageadmin_id_seq', 1, true);
+
+
+--
+-- Name: news_id_seq; Type: SEQUENCE SET; Schema: public; Owner: myuser
+--
+
+SELECT pg_catalog.setval('public.news_id_seq', 14, true);
+
+
+--
+-- Name: photos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: myuser
+--
+
+SELECT pg_catalog.setval('public.photos_id_seq', 60, true);
+
+
+--
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: myuser
+--
+
+SELECT pg_catalog.setval('public.users_id_seq', 79, true);
+
+
+--
+-- Name: auth_assignment auth_assignment_pkey; Type: CONSTRAINT; Schema: public; Owner: myuser
+--
+
+ALTER TABLE ONLY public.auth_assignment
+    ADD CONSTRAINT auth_assignment_pkey PRIMARY KEY (item_name, user_id);
+
+
+--
+-- Name: auth_item_child auth_item_child_pkey; Type: CONSTRAINT; Schema: public; Owner: myuser
+--
+
+ALTER TABLE ONLY public.auth_item_child
+    ADD CONSTRAINT auth_item_child_pkey PRIMARY KEY (parent, child);
+
+
+--
+-- Name: auth_item auth_item_pkey; Type: CONSTRAINT; Schema: public; Owner: myuser
+--
+
+ALTER TABLE ONLY public.auth_item
+    ADD CONSTRAINT auth_item_pkey PRIMARY KEY (name);
+
+
+--
+-- Name: auth_rule auth_rule_pkey; Type: CONSTRAINT; Schema: public; Owner: myuser
+--
+
+ALTER TABLE ONLY public.auth_rule
+    ADD CONSTRAINT auth_rule_pkey PRIMARY KEY (name);
+
+
+--
+-- Name: category category_pkey; Type: CONSTRAINT; Schema: public; Owner: myuser
+--
+
+ALTER TABLE ONLY public.category
+    ADD CONSTRAINT category_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: imageadmin imageadmin_pkey; Type: CONSTRAINT; Schema: public; Owner: myuser
+--
+
+ALTER TABLE ONLY public.imageadmin
+    ADD CONSTRAINT imageadmin_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: migration migration_pkey; Type: CONSTRAINT; Schema: public; Owner: myuser
+--
+
+ALTER TABLE ONLY public.migration
+    ADD CONSTRAINT migration_pkey PRIMARY KEY (version);
+
+
+--
+-- Name: news news_pkey; Type: CONSTRAINT; Schema: public; Owner: myuser
+--
+
+ALTER TABLE ONLY public.news
+    ADD CONSTRAINT news_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: photos photos_pkey; Type: CONSTRAINT; Schema: public; Owner: myuser
+--
+
+ALTER TABLE ONLY public.photos
+    ADD CONSTRAINT photos_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: users users_auth_key_key; Type: CONSTRAINT; Schema: public; Owner: myuser
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_auth_key_key UNIQUE (auth_key);
+
+
+--
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: myuser
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: idx-auth_assignment-user_id; Type: INDEX; Schema: public; Owner: myuser
+--
+
+CREATE INDEX "idx-auth_assignment-user_id" ON public.auth_assignment USING btree (user_id);
+
+
+--
+-- Name: idx-auth_item-type; Type: INDEX; Schema: public; Owner: myuser
+--
+
+CREATE INDEX "idx-auth_item-type" ON public.auth_item USING btree (type);
+
+
+--
+-- Name: auth_assignment auth_assignment_item_name_fkey; Type: FK CONSTRAINT; Schema: public; Owner: myuser
+--
+
+ALTER TABLE ONLY public.auth_assignment
+    ADD CONSTRAINT auth_assignment_item_name_fkey FOREIGN KEY (item_name) REFERENCES public.auth_item(name) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: auth_item_child auth_item_child_child_fkey; Type: FK CONSTRAINT; Schema: public; Owner: myuser
+--
+
+ALTER TABLE ONLY public.auth_item_child
+    ADD CONSTRAINT auth_item_child_child_fkey FOREIGN KEY (child) REFERENCES public.auth_item(name) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: auth_item_child auth_item_child_parent_fkey; Type: FK CONSTRAINT; Schema: public; Owner: myuser
+--
+
+ALTER TABLE ONLY public.auth_item_child
+    ADD CONSTRAINT auth_item_child_parent_fkey FOREIGN KEY (parent) REFERENCES public.auth_item(name) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: auth_item auth_item_rule_name_fkey; Type: FK CONSTRAINT; Schema: public; Owner: myuser
+--
+
+ALTER TABLE ONLY public.auth_item
+    ADD CONSTRAINT auth_item_rule_name_fkey FOREIGN KEY (rule_name) REFERENCES public.auth_rule(name) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- Name: news news_category_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: myuser
+--
+
+ALTER TABLE ONLY public.news
+    ADD CONSTRAINT news_category_id_fkey FOREIGN KEY (category_id) REFERENCES public.category(id);
+
+
+--
+-- Name: news news_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: myuser
+--
+
+ALTER TABLE ONLY public.news
+    ADD CONSTRAINT news_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.users(id);
+
+
+--
+-- Name: photos photos_category_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: myuser
+--
+
+ALTER TABLE ONLY public.photos
+    ADD CONSTRAINT photos_category_id_fkey FOREIGN KEY (category_id) REFERENCES public.category(id);
+
+
+--
+-- Name: photos photos_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: myuser
+--
+
+ALTER TABLE ONLY public.photos
+    ADD CONSTRAINT photos_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.users(id);
+
+
+--
+-- PostgreSQL database dump complete
+--
+
