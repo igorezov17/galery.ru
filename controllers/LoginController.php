@@ -4,7 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use yii\web\Controller;
-use app\models\login\Valid;
+use app\models\login\valid;
 
 class LoginController extends Controller
 {
@@ -13,7 +13,7 @@ class LoginController extends Controller
 
     public function actionLoginUp()
     {
-        $model = new Valid();
+        $model = new valid();
         $post = Yii::$app->request->post();
            if( $model->load(Yii::$app->request->post()) && $model->login())
            {
