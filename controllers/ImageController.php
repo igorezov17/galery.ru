@@ -22,7 +22,7 @@ class ImageController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['user-image', 'create', 'delete', 'download', 'ratota'],
+                        'actions' => ['index', 'view', 'download', 'user-image', 'create', 'delete', 'download', 'ratota'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
