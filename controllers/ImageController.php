@@ -51,7 +51,7 @@ class ImageController extends Controller
         $photo = Photos::getOne($id);
         $categories = Category::getAllCategory();
         $image = new Photos();
-        $userimage = $image->userImage(Yii::$app->user->getId());
+        $userimage = $image->userImage(Yii::$app->user->id);
         return $this->render('getimage', ['image' => $photo, 'userimage'=>$userimage]);
     }
 

@@ -37,14 +37,9 @@ class ImageFrm extends Model implements ModelAdminInterface
 
     public function editObt()
     {
-        // var_dump($this->title);
-        // var_dump($this->description);
-        // var_dump($this->image);
-        // die;
         $id = Yii::$app->user->id;
         if ($this->validate())
         {
-
             $sql = "INSERT INTO photos(title, description, image, date, user_id) VALUES (:title, :description, :image, :date, :user_id)";
             return Yii::$app->db->createCommand($sql)
                                 ->bindValue(':title', $this->title)

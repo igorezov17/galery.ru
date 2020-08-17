@@ -76,7 +76,7 @@ class ImagesController extends Controller
             if ($model->updateObt($id))
             {
                 Yii::$app->session->setFlash('success', 'Изображение успешно обновлен');
-                return $this->redirect('/admin/posts');
+                return $this->redirect('/admin/images');
             }
         }
         return $this->render('update', ['model' => $model]);

@@ -16,7 +16,7 @@ class Image extends ActiveRecord
 
     public static function getAll()
     {
-        $data = self::find()->limit(6)->all();
+        $data = self::find()->limit(20)->all();
 
         return $data;
     }

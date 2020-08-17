@@ -39,6 +39,12 @@ use yii\helpers\Url;
                         <a href="<?= Url::toRoute(['image/ratota', 'id'=>$image['id']]); ?>" class="button is-warning">
                           <i class="fa fa-edit">Ratota</i>
                         </a>
+
+
+                        <a href="/image/download/<?php echo  Html::encode($image['id']);?>" class="button is-info">
+                          <i class="fa fa-edit-blue">Save</i>
+                        </a>
+                        
                         <a href="/image/delete/<?php echo $image['id']; ?> " class="button is-danger">
                           <i class="fa fa-times">Delete</i>
                         </a>

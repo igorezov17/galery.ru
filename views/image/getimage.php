@@ -46,18 +46,16 @@ use yii\helpers\Url;
                 <?php echo  Html::encode($userimage['0']['desc']); ?>
                   <br>
                   <time datetime="2016-1-1" class="is-size-6 is-pulled-left">Добавлено: <?php echo  Html::encode($userimage[0]['date']); ?></time>
-                  <a href="/image/download/<?php echo  Html::encode($userimage['0']['id']); ?>" class="button is-info is-pulled-right">Скачать</a>
+
+                  <a href="/image/download/<?php echo  Html::encode($image->id); ?>" class="button is-info is-pulled-right">Скачать</a>
                   <div class="is-clearfix"></div>
                 </div>
               </div>
             </div>
-           
           </div>
           <div class="column"></div>
         </div>
-        
         <hr>
-
         <div class="columns">
           <div class="column">
             <h1 class="title">Другие фотографии от <a href="/user/profile"><?php echo $userimage[0]['username']; ?></a></h1>

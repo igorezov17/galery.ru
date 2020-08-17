@@ -54,17 +54,15 @@ AppImage::register($this);
               <div class="navbar-end">
               <div class="navbar-item">
                 <div class="field is-grouped">
-                                <div class="dropdown-trigger">
+                                <d class="dropdown-trigger">
                                     <button class="button is-primary" aria-haspopup="true" aria-controls="dropdown-menu4">
                                         <span>Управление</span>
                                         <span class="icon is-small">
                                             <i class="fas fa-angle-down" aria-hidden="true"></i>
                                           </span>
                                     </button>
-                                </div>
-                                </div>
-                              </div>
-                              </div>
+                                
+
                                 <div class="dropdown-menu" id="dropdown-menu4" role="menu">
                                     <div class="dropdown-content">
                                         <div class="dropdown-item manager-links">
@@ -76,7 +74,6 @@ AppImage::register($this);
                                                     <span>Загрузить картинку</span>
                                                 </a>
                                             </p>
-
                                             <p class="control">
                                                 <a class="button" href="/image/user-image/<?php echo Yii::$app->user->id; ?>">
                                                       <!-- <span class="icon">
