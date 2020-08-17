@@ -54,7 +54,7 @@ use yii\widgets\ActiveForm;
                     <!-- <h6>Avatar</h6> -->
                                 <div class="control has-icons-left has-icons-right">
                                 <?= $form->field($model, 'image[]')->fileInput(['multiple' => true, 'accept' => 'image/*']) ?> <br> <br>
- 
+                                    <img src="../uploads/<?= $user['image'] ?>" alt="">
                                 </div>
                                 </div>
 
