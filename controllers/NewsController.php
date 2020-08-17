@@ -21,7 +21,7 @@ class NewsController extends Controller
                     [
                         'actions' => ['index'],
                         'allow' => true,
-                        'roles' => ['admin', 'content', 'user'],
+                        'roles' => ['?'],
                     ],
                 ],
             ]
