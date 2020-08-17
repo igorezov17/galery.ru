@@ -3,13 +3,13 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\image\Category;
-use app\models\image\Photos;
+use app\models\Image\Category;
+use app\models\Image\Photos;
 use app\models\Image;
 use yii\web\UploadedFile;
 use yii\web\Controller;
 use app\models\admin\images\ImageFrm;
-use app\models\image\ImageValid;
+use app\models\Image\ImageValid;
 use app\models\login\valid;
 use yii\filters\AccessControl;
 
