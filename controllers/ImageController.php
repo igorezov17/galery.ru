@@ -10,7 +10,7 @@ use yii\web\UploadedFile;
 use yii\web\Controller;
 use app\models\admin\images\ImageFrm;
 use app\models\image\ImageValid;
-use app\models\login\Valid;
+use app\models\login\valid;
 use yii\filters\AccessControl;
 
 class ImageController extends Controller

@@ -4,7 +4,7 @@ namespace app\models\login;
 
 use Yii;
 use yii\base\Model;
-use app\models\login\Users;
+use app\models\login\users;
 
 class Valid extends Model
 {
