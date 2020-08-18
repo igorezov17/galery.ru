@@ -82,17 +82,13 @@ class ImageController extends Controller
         $categori = Yii::$app->request->post();
         Yii::$app->user->id;
         $category = $model->getCategory();
-
-        if($model->load(Yii::$app->request->post())  && $model->image = $image[0]->name)
+        if (Yii::$app->request->isPost)
         {
-            // var_dump($model);
-            // echo "<br>";
-            // var_dump(Yii::$app->user->id);
-            // echo "<br>";
-            // var_dump($categori['category_id']);
-            // die;
-            $model->saveimage(Yii::$app->user->id, $categori['category_id']);
-            return $this->redirect('/image/user-image');
+            if($model->load(Yii::$app->request->post())  && $model->image = $image[0]->name)
+            {
+                $model->saveimage(Yii::$app->user->id, $categori['category_id'], $image);
+                return $this->redirect('/image/user-image');
+            }
         }
         return $this->render('create', ['model' => $model, 'categories' => $category]);
     }
@@ -142,11 +138,6 @@ class ImageController extends Controller
         $new = imagerotate($source, 90, 0);
         imagejpeg($new, $path);
         return $this->redirect(['/image/user-image']);
-
-        // $img = imagecreatefromjpeg($image);    // Картинка
-        // $degrees = 90;                         //Наклон картинки
-        // $imgRotated = imagerotate($img, $degrees, 0);
-        // imagejpeg($imgRotated, $new_image, 90); 
     }
 
 }

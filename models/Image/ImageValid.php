@@ -28,15 +28,16 @@ class ImageValid extends Model
      * @param [type] $category
      * @return void
      */
-    public function saveimage($id, $category)
+    public function saveimage($id, $category, $file)
     {
+        $file = $file['0'];
 
         if ($this->validate())
         {
             $sql = "INSERT INTO 
                             photos(title, description, image, date, user_id, category_id) 
                     VALUES (:title, :description, :image, :date, :user_id, :category_id)";
-            return Yii::$app->db->createCommand($sql)
+            Yii::$app->db->createCommand($sql)
                     ->bindValue(':title', $this->title)
                     ->bindValue(':description', $this->description)
                     ->bindValue(':image', $this->image)
@@ -44,6 +45,9 @@ class ImageValid extends Model
                     ->bindValue(':user_id', $id)
                     ->bindValue(':category_id', $category)
                     ->execute();
+            $file->saveAS(Yii::getAlias('@web') . 'uploads/' . $file->name);
+            return true;
+                
         } else {
             echo "fuck image";    
         }

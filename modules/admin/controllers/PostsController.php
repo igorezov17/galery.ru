@@ -19,7 +19,7 @@ class PostsController extends Controller
      *
      * @return void
      * 
-     * домтуп к измению статьи имеет только админ и контент менеджер
+     * доступ к измению статьи имеет только админ и контент менеджер
      */
     public function behaviors()
     {
@@ -49,21 +49,22 @@ class PostsController extends Controller
 
     /**
      * Undocumented function
-     *
-     * @return void
      * Создание нового поста
      */
     public function actionEdit()
     {
         $model = new PostValid();
         $image = UploadedFile::getInstances($model, 'image');
-        if ($model->load(Yii::$app->request->post()) && $model->image = $image[0]->name)
+        if (Yii::$app->request->isPost)
         {
-            if ($model->editObt())
+            if ($model->load(Yii::$app->request->post()) && $model->image = $image[0]->name)
             {
-                Yii::$app->session->setFlash('success', 'Новый пост добавлен');
-                return $this->redirect('/admin/posts');
-            } 
+                if ($model->editObt($image))
+                {
+                    Yii::$app->session->setFlash('success', 'Новый пост добавлен');
+                    return $this->redirect('/admin/posts');
+                } 
+            }
         }
         return $this->render('edit', ['model' => $model]);
     }
@@ -72,7 +73,6 @@ class PostsController extends Controller
      * Undocumented function
      *
      * @param [type] $id
-     * @return void
      * 
      * Изменение существующего поста
      */
@@ -81,12 +81,15 @@ class PostsController extends Controller
         $model = new PostValid();
         $image = UploadedFile::getInstances($model, 'image');
         $data = Yii::$app->request->post();
-        if ($model->load(Yii::$app->request->post()) && $model->image = $image[0]->name)
+        if (Yii::$app->request->isPost)
         {
-            if ($model->updateObt($id))
+            if ($model->load(Yii::$app->request->post()) && $model->image = $image[0]->name)
             {
-                Yii::$app->session->setFlash('success', 'Пост успешно обновлен');
-                return $this->redirect('/admin/posts');
+                if ($model->updateObt($id, $image))
+                {
+                    Yii::$app->session->setFlash('success', 'Пост успешно обновлен');
+                    return $this->redirect('/admin/posts');
+                }
             }
         }
         return $this->render('update', ['model' => $model]);
@@ -96,7 +99,6 @@ class PostsController extends Controller
      * Undocumented function
      *
      * @param [type] $id
-     * @return void
      * 
      * удаление текущего поста
      */
@@ -104,6 +106,5 @@ class PostsController extends Controller
     {
         $rezult = PostValid::deleteObt($id);
         return $this->redirect('/admin/posts/index');
-    }
-  
+    } 
 }

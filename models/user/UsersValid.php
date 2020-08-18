@@ -10,14 +10,12 @@ class UsersValid extends Model
 {
     public $username;
     public $image;
-    public $password;
+
 
     public function rules()
     {
         return [
             [['username'], 'trim'],
-            // [['email'], 'unique', 'targetClass' => Users::className(),],
-            // [['image'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg'],
         ];
     }
 
@@ -25,7 +23,6 @@ class UsersValid extends Model
      * Undocumented function
      *
      * @param [type] $id
-     * @return void
      * changed user's: username, email, image
      */
     public function saveUser($id, $file)
@@ -38,7 +35,7 @@ class UsersValid extends Model
                                 ->bindValue(':username', $this->username)
                                 ->bindValue(':image', $this->image)
                                 ->bindValue(':id', $id)
-                            ->execute();
+                                ->execute();
 
             $file->saveAS(Yii::getAlias('@web') . 'uploads/' . $file->name);
             return true;
@@ -46,8 +43,5 @@ class UsersValid extends Model
             return false; 
         }
     }
-
-    public function uploadFile()
-    {}
 
 }

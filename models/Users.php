@@ -20,7 +20,6 @@ class Users extends ActiveRecord
 
     public static function getAll()
     {
-        // $data = self::find()->all();
         $sql = "SELECT * FROM users";
         $data = Yii::$app->db->createCommand($sql)->queryAll();
         return $data;
@@ -44,11 +43,6 @@ class Users extends ActiveRecord
 
     public static function changeRole($id, $role)
     {
-        // var_dump($id);
-        // echo "<br>";
-        // var_dump($role);
-        // die;
-
         $rol = ($role == true) ? 'banned' : 'user';
                 $sql = "UPDATE auth_assignment SET item_name = :role WHERE user_id::integer = :id";
         return Yii::$app->db->createCommand($sql)
@@ -68,5 +62,13 @@ class Users extends ActiveRecord
                 LEFT JOIN auth_assignment on users.id = auth_assignment.user_id::integer";
         return Yii::$app->db->createCommand($sql)
                         ->queryAll();
+    }
+
+    public function setRole($id)
+    {
+        $userRole = Yii::$app->authManager->getRole('user');
+        Yii::$app->authManager->assign($userRole, $id);
+
+        return True;
     }
 }

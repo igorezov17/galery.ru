@@ -72,8 +72,9 @@ class SignupForm extends Model
      * Создание нового пользователя
      * @return void
      */
-    public function save()
+    public function save($file)
     {
+        $file = $file['0'];
         if ($this->validate())
         {
             $user = new Users();
@@ -88,13 +89,14 @@ class SignupForm extends Model
                 $user->image = $this->imageFiles;
             }
             $sql = "INSERT INTO users(username, email, password, image) VALUES (:username, :email, :password, :imageFile)";
-            $rez = Yii::$app->db->createCommand($sql)
+            Yii::$app->db->createCommand($sql)
                 ->bindValue(':username', $user->username)
                 ->bindValue(':email', $user->email)
                 ->bindValue(':password', $user->password)
                 ->bindValue(':imageFile', $user->image)
                 ->execute();
-            return $rez;
+            $file->saveAS(Yii::getAlias('@web') . 'uploads/' . $file->name);
+            return true;
         } else {
             return !$this->hasErrors();
         }

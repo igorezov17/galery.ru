@@ -33,7 +33,7 @@ use yii\widgets\ActiveForm;
 
                 <?= $form->field($model, 'description') ?>
 
-                <?= $form->field($model, 'image[]')->fileInput(['multiple' => true, 'accept' => 'image/*']) ?>
+                <?= $form->field($model, 'image')->fileInput() ?>
 
                 <div class="field">
               <label >Выберите категорию</label>

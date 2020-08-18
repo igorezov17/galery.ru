@@ -43,19 +43,21 @@ class ImagesController extends Controller
     /**
      * Undocumented function
      * Создание нового изображения
-     * @return void
      */
     public function actionEdit()
     {
         $model = new ImageFrm();
         $image = UploadedFile::getInstances($model, 'image');
-        if ($model->load(Yii::$app->request->post()) && $model->image = $image[0]->name)
+        if (Yii::$app->request->isPost);
         {
-            if ($model->editObt())
+            if ($model->load(Yii::$app->request->post()) && $model->image = $image[0]->name)
             {
-                Yii::$app->session->setFlash('success', 'Новый пост добавлен');
-                return $this->redirect('/admin/images');
-            } 
+                if ($model->editObt($image))
+                {
+                    Yii::$app->session->setFlash('success', 'Добавлено новое изображение');
+                    return $this->redirect('/admin/images');
+                } 
+            }
         }
         return $this->render('edit', ['model' => $model]);
     }
@@ -64,7 +66,6 @@ class ImagesController extends Controller
      * Undocumented function
      * Обновление изображения
      * @param [type] $id
-     * @return void
      */
     public function actionUpdate($id)
     {
@@ -73,7 +74,7 @@ class ImagesController extends Controller
         $data = Yii::$app->request->post();
         if ($model->load(Yii::$app->request->post()) && $model->image = $image[0]->name)
         {
-            if ($model->updateObt($id))
+            if ($model->updateObt($id, $image))
             {
                 Yii::$app->session->setFlash('success', 'Изображение успешно обновлен');
                 return $this->redirect('/admin/images');
@@ -86,13 +87,10 @@ class ImagesController extends Controller
      * Undocumented function
      * Удаление изображения
      * @param [type] $id
-     * @return void
      */
     public function actionDelete($id)
     {
         $rezult = ImageFrm::deleteObt($id);
         return $this->redirect('/admin/images/index');
     }
-
-    
 }

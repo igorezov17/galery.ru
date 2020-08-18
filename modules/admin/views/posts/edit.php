@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?= $form->field($model, 'description')->textarea() ?>
 
-                <?= $form->field($model, 'image[]')->fileInput(['multiple' => true, 'accept' => 'image/*']) ?>
+                <?= $form->field($model, 'image')->fileInput(['multiple' => true, 'accept' => 'image/*']) ?>
 
                 <div class="form-group">
                     <?= Html::submitButton('Signup', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>

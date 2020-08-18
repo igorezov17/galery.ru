@@ -16,14 +16,14 @@ interface ModelAdminInterface
      * 
      * Создание записи
      */
-    public function editObt();
+    public function editObt($file);
 
     /**
      * 
      * Обновление записи
      */
 
-    public function updateObt($id);
+    public function updateObt($id, $file);
 
     /**
      * Undocumented function

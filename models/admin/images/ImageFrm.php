@@ -8,7 +8,6 @@ use app\models\admin\images\Photo;
 use app\components\behaviors\MyBehavior;
 use app\models\admin\ModelAdminInterface;
 
-
 class ImageFrm extends Model implements ModelAdminInterface
 {
 
@@ -35,53 +34,57 @@ class ImageFrm extends Model implements ModelAdminInterface
         ];
     }
 
-    public function editObt()
+    public function editObt($file)
     {
+        $file = $file[0];
         $id = Yii::$app->user->id;
         if ($this->validate())
         {
             $sql = "INSERT INTO photos(title, description, image, date, user_id) VALUES (:title, :description, :image, :date, :user_id)";
-            return Yii::$app->db->createCommand($sql)
+            Yii::$app->db->createCommand($sql)
                                 ->bindValue(':title', $this->title)
                                 ->bindValue(':description', $this->description)
                                 ->bindValue(':image', $this->image)
                                 ->bindValue(':date', date('Y-m-d\TH:i:s'))
                                 ->bindValue(':user_id', $id)
                                 ->execute();
+            $file->saveAS(Yii::getAlias('@web') . 'uploads/' . $file->name);
+            return true;
         } else
         {
             return false;
         }
     }
 
-
         /**
      * Обновить изображение
      */
-    public function updateObt($id)
+    public function updateObt($id, $file)
     {
+        $file = $file[0];
+
         if ($this->validate())
         {
             $sql = "UPDATE photos SET title = :title, description = :description, image = :image WHERE id = :id";
-            return Yii::$app->db->createCommand($sql)
+            Yii::$app->db->createCommand($sql)
                             ->bindValue(':title', $this->title)
                             ->bindValue(':description', $this->description)
                             ->bindValue(':image', $this->image)
                             ->bindParam(':id', $id)
                             ->execute();
+            $file->saveAS(Yii::getAlias('@web') . 'uploads/' . $file->name);
+            return true;
         } 
         else
         {
             return false;
         }
-
     }
     /**
      * Undocumented function
      *
      * удаление картинки в панели администратора
      * @param [type] $id
-     * @return void
      */
     public static function deleteObt($id)
     {

@@ -56,7 +56,6 @@ class UsersController extends Controller
     /**
      * Undocumented function
      * Создание нового пользователя
-     * @return void
      */
     public function actionEdit()
     {
@@ -66,17 +65,19 @@ class UsersController extends Controller
         $image = UploadedFile::getInstances($model, 'imageFiles');
         $model->imageFiles = $image[0]->name;
         $model->image = $image[0]->name;
-
-        if ($model->load(Yii::$app->request->post()) && $model->image = $image[0]->name && $model->imageFiles = $image[0]->name )
+        if (Yii::$app->request->isPost)
         {
-            if($model->save())
+            if ($model->load(Yii::$app->request->post()) && $model->image = $image[0]->name && $model->imageFiles = $image[0]->name )
             {
-                Yii::$app->session->setFlash('success', 'Пользователь успешно обновлен');
-                return $this->redirect('/admin/users/');
-            } 
-            else {
-                Yii::$app->session->setFlash('warning', 'Упс, что-то пошло не так');
-                return $this->redirect('/admin/users/');
+                if($model->save($image))
+                {
+                    Yii::$app->session->setFlash('success', 'Пользователь успешно обновлен');
+                    return $this->redirect('/admin/users/');
+                } 
+                else {
+                    Yii::$app->session->setFlash('warning', 'Упс, что-то пошло не так');
+                    return $this->redirect('/admin/users/');
+                }
             }
         }
         return $this->render('edit', ['model' => $model]);
@@ -86,12 +87,10 @@ class UsersController extends Controller
      * Undocumented function
      * Удаление пользлвателя
      * @param [type] $id
-     * @return void
      */
     public function actionDelete($id)
     {
         $rezult = SignupForm::delete($id);
         return $this->redirect('/admin/users');
     }
-    
 }
