@@ -47,17 +47,20 @@ class UserController extends Controller
     {
         $model = new UsersValid();
         $image = UploadedFile::getInstances($model, 'image');
-        if ($model->load(Yii::$app->request->post()) && $model->image = $image[0]->name)
+        if (Yii::$app->request->isPost)
         {
-            if ($model->saveUser(Yii::$app->user->id))
+            if ($model->load(Yii::$app->request->post()) && $model->image = $image[0]->name)
             {
-                Yii::$app->session->setFlash('success', 'Вы успешно изменили свои данные');
-                return $this->redirect('/user/info');
-            } 
-            else
-            {
-                Yii::$app->session->setFlash('warning', 'Упс, что-то пошла не так');
-                return $this->redirect('/user/info');
+                if ($model->saveUser(Yii::$app->user->id, $image))
+                {
+                    Yii::$app->session->setFlash('success', 'Вы успешно изменили свои данные');
+                    return $this->redirect('/user/info');
+                } 
+                else
+                {
+                    Yii::$app->session->setFlash('warning', 'Упс, что-то пошла не так');
+                    return $this->redirect('/user/info');
+                }
             }
         }
         return $this->render('info', ['model' => $model]);

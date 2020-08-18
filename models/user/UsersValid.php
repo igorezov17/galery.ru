@@ -17,6 +17,7 @@ class UsersValid extends Model
         return [
             [['username'], 'trim'],
             // [['email'], 'unique', 'targetClass' => Users::className(),],
+            // [['image'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg'],
         ];
     }
 
@@ -27,19 +28,26 @@ class UsersValid extends Model
      * @return void
      * changed user's: username, email, image
      */
-    public function saveUser($id)
+    public function saveUser($id, $file)
     {
+        $file = $file[0];
         if ($this->validate())
         {
             $sql = "UPDATE users SET username = :username, image = :image WHERE id = :id";
-            return Yii::$app->db->createCommand($sql)
+            Yii::$app->db->createCommand($sql)
                                 ->bindValue(':username', $this->username)
                                 ->bindValue(':image', $this->image)
                                 ->bindValue(':id', $id)
                             ->execute();
+
+            $file->saveAS(Yii::getAlias('@web') . 'uploads/' . $file->name);
+            return true;
         } else {
             return false; 
         }
     }
+
+    public function uploadFile()
+    {}
 
 }
