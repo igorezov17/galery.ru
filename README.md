@@ -47,7 +47,7 @@ psql postgres < dumpBD
     
   Вкладка профиль
     - Основная иформация о пользователе
-    https://github.com/igorezov17/galery.ru/blob/master/docs/3io0lGXsXJ4.jpg
+    ![](https://github.com/igorezov17/galery.ru/blob/master/docs/3io0lGXsXJ4.jpg)
     - Изменение имени и аватара
     - Изменение пароля
     
