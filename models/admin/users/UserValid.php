@@ -18,7 +18,7 @@ class UserValid extends Model
         return [
             [['username', 'email', 'password'], 'required'],
             [['username'], 'string', 'min' =>2,'max'=>255],
-            [['image'], 'trim'],
+            //[['image'], 'trim'],
             [['email'], 'email'],
             [['password'], 'string', 'min'=>4],
             [['email'], 'unique', 'targetClass' => Users::className(),],
@@ -53,31 +53,31 @@ class UserValid extends Model
      */
     public function save($file)
     {
-        $file = $file['0'];
+	$fileName = "";
+        if (isset($file['0'])) {
+    	    $file = $file['0'];
+    	    $file->saveAs(Yii::getAlias('@web') . 'uploads/' . $file->name);
+    	    $fileName = $file->name;
+        } else {
+    	    $fileName = $this->emptyImage()['title'];
+        }
+        
         if ($this->validate())
         {
             $user = new Users();
             $user->username = $this->username;
             $user->email = $this->email;
             $user->password = Yii::$app->security->generatePasswordHash($this->password);
-            if (!$this->image)
-            {   
-                $user->image = $this->emptyImage();
-            } else {
-                $user->image = $file->name;
-            }
             $sql = "INSERT INTO users(username, email, password, image) VALUES (:username, :email, :password, :imageFile)";
             Yii::$app->db->createCommand($sql)
                 ->bindValue(':username', $user->username)
                 ->bindValue(':email', $user->email)
                 ->bindValue(':password', $user->password)
-                ->bindValue(':imageFile', $user->image)
+                ->bindValue(':imageFile', $fileName)
                 ->execute();
-            $file->saveAS(Yii::getAlias('@web') . 'uploads/' . $file->name);
-            
             return true;
         } else {
-            return !$this->hasErrors();
+            return false;
         }
     }
 
