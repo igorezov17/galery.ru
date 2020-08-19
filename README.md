@@ -40,16 +40,18 @@ psql postgres < dumpBD
   Вход/Зарегестрироваться
   
   Вкладка новости: простр всех новостей
+  ![](https://github.com/igorezov17/galery.ru/blob/master/docs/x50hXOhRVWc.jpg)
   
   Вкладка усправление
     - Загрузка картинки
     - Моя галерея
+   ![](https://github.com/igorezov17/galery.ru/blob/master/docs/hVkrKAX-dUc.jpg)
     
   Вкладка профиль
     - Основная иформация о пользователе
     ![](https://github.com/igorezov17/galery.ru/blob/master/docs/3io0lGXsXJ4.jpg)
-    - Изменение имени и аватара
-    ![](https://github.com/igorezov17/galery.ru/blob/master/docs/3io0lGXsXJ4.jpg)
+    - Изменение пароля
+    ![](https://github.com/igorezov17/galery.ru/blob/master/docs/err__1AAT4Y.jpg)
     - Изменение пароля
     
   Выход (Для авторизированного пользователя)
