@@ -7,8 +7,12 @@
 1) ulia@ya.ru
 12345
 Админ
-2) fom@ya.ru
-123456
+2) Логин
+    fom@ya.ru
+   Пароль
+    123456
+   Статус RBAC
+    Admin
 3) rikman@yandex.ru
 12345
 4) villa@yandex.ru
