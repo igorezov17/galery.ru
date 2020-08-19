@@ -44,6 +44,7 @@ psql postgres < dumpBD
   
   Вкладка усправление
     - Загрузка картинки
+   ![](https://github.com/igorezov17/galery.ru/blob/master/docs/AerKjdk7y-M.jpg)
     - Моя галерея
    ![](https://github.com/igorezov17/galery.ru/blob/master/docs/hVkrKAX-dUc.jpg)
     
@@ -58,8 +59,8 @@ psql postgres < dumpBD
 
 
 ## Админ панель
-  доступна только пользователям с ролями "admin" и "content-manager"
-  http://167.71.7.3/admin
+  Доступ имеют только пользователи с ролями "admin" и "content-manager"
+  Адрес: http://167.71.7.3/admin
   
   Список всех пользователей
   ![](https://github.com/igorezov17/galery.ru/blob/master/docs/7KAmooPWWw8.jpg)
