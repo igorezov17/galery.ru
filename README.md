@@ -1,6 +1,8 @@
 # galery.ru
   http://167.71.7.3
 
+## Пароли
+https://github.com/igorezov17/galery.ru/blob/master/password.md
 
 ## Цель проекта
 Разработать проект, который будет содержать основной функционал: 
