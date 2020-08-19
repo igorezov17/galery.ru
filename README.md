@@ -49,13 +49,22 @@ psql postgres < dumpBD
     - Основная иформация о пользователе
     ![](https://github.com/igorezov17/galery.ru/blob/master/docs/3io0lGXsXJ4.jpg)
     - Изменение имени и аватара
+    ![](https://github.com/igorezov17/galery.ru/blob/master/docs/3io0lGXsXJ4.jpg)
     - Изменение пароля
     
   Выход (Для авторизированного пользователя)
 
 
 ## Админ панель
-```
   доступна только пользователям с ролями "admin" и "content-manager"
   http://167.71.7.3/admin
-```
+  
+  Список всех пользователей
+  ![](https://github.com/igorezov17/galery.ru/blob/master/docs/7KAmooPWWw8.jpg)
+  
+    Список всех изображений
+  ![](https://github.com/igorezov17/galery.ru/blob/master/docs/FsYYGm996mY.jpg)
+  
+      Список всех постов
+  ![](https://github.com/igorezov17/galery.ru/blob/master/docs/KONcXNVBc4E.jpg)
+
