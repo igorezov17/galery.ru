@@ -8,6 +8,7 @@ use yii\web\UploadedFile;
 use yii\web\Controller;
 use app\models\Users;
 use app\models\forms\SignupForm;
+use app\models\admin\users\UserValid;
 use yii\filters\AccessControl;
 
 /**
@@ -59,15 +60,14 @@ class UsersController extends Controller
      */
     public function actionEdit()
     {
-        $model = new SignupForm();
-        $model->scenario = SignupForm::SCENARIO_ADMIN_CREATE;
+        $model = new UserValid();
         $date = Yii::$app->request->post();
-        $image = UploadedFile::getInstances($model, 'imageFiles');
-        $model->imageFiles = $image[0]->name;
+        $image = UploadedFile::getInstances($model, 'image');
         $model->image = $image[0]->name;
+
         if (Yii::$app->request->isPost)
         {
-            if ($model->load(Yii::$app->request->post()) && $model->image = $image[0]->name && $model->imageFiles = $image[0]->name )
+            if ($model->load(Yii::$app->request->post()) && $model->image = $image[0]->name )
             {
                 if($model->save($image))
                 {

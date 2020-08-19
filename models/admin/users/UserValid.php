@@ -1,76 +1,55 @@
 <?php 
 
-namespace app\models\forms;
+namespace app\models\admin\users;
 
 use Yii;
+use app\models\login\Users;
 use yii\base\Model;
-use app\models\Users;
 
-
-class SignupForm extends Model
+class UserValid extends Model
 {
     public $username;
     public $email;
     public $password;
-    public $repeatPassword;
-    public $imageFiles;
     public $image;
-
-    /**
-     * Список сценариев для работы модели с различными данными
-     */
-    const SCENARIO_ADMIN_CREATE = "users_edit";
-    const SCENARIO_REG = "users_reg";
-    const SCENARIO_INFO_UPDATE = "user_info_update ";
-    const SCENARIO_SECURITY_UPDATE = "user_security_update";
-
-    public function scenarios()
-    {
-        return [
-            self::SCENARIO_ADMIN_CREATE => ['username', 'email', 'password', 'imageFiles', 'image'],
-            self::SCENARIO_REG => ['username', 'email', 'password', 'repeatPassword'],
-            self::SCENARIO_INFO_UPDATE => ['username', 'email'],
-            self::SCENARIO_SECURITY_UPDATE => ['password'],
-        ];
-    }
 
     public function rules()
     {
         return [
             [['username', 'email', 'password'], 'required'],
-            [['repeatPassword'], 'required'],
-            [['imageFiles'], 'required'],
-            [['imageFiles'], 'trim'],
-            [['image'], 'trim'],
-            [['username'], 'trim'],
             [['username'], 'string', 'min' =>2,'max'=>255],
+            [['image'], 'trim'],
             [['email'], 'email'],
             [['password'], 'string', 'min'=>4],
-            [['repeatPassword'], 'resetPassword'], // собственный валидатор для проверки сходства двуз паролей
             [['email'], 'unique', 'targetClass' => Users::className(),],
         ];
     }
 
     /**
-     * Undocumented function
-     *
-     * Провекрка паролей на совпадение
-     * @param [type] $attributes
-     * @param [type] $params
-     * @return void
+     * Добавление нового поста
      */
-    public function resetPassword($attributes, $params)
+    public function editObt($file)
     {
-        if ($this->password != $this->repeatPassword)
+        $file = $file[0];
+        if ($this->validate())
         {
-            $this->addError($attributes, "Пароли не совпадают");
+
+            $sql = "INSERT INTO news(title, description, image) VALUES (:title, :description, :image)";
+            Yii::$app->db->createCommand($sql)
+                                ->bindValue(':title', $this->title)
+                                ->bindValue(':description', $this->description)
+                                ->bindValue(':image', $this->image)
+                                ->execute();
+            $file->saveAS(Yii::getAlias('@web') . 'uploads/' . $file->name);
+            return true;
+        } else
+        {
+            return false;
         }
     }
 
     /**
-     * Undocumented function
-     * Создание нового пользователя
-     * @return void
+     * Обновить пост
      */
     public function save($file)
     {
@@ -81,12 +60,11 @@ class SignupForm extends Model
             $user->username = $this->username;
             $user->email = $this->email;
             $user->password = Yii::$app->security->generatePasswordHash($this->password);
-            if (!$this->imageFiles)
-            {
-                $this->imageFiles = $this->emptyImage();    
-                $user->image = $this->imageFiles['title'];
+            if (!$this->image)
+            {   
+                $user->image = $this->emptyImage();
             } else {
-                $user->image = $this->imageFiles;
+                $user->image = $file->name;
             }
             $sql = "INSERT INTO users(username, email, password, image) VALUES (:username, :email, :password, :imageFile)";
             Yii::$app->db->createCommand($sql)
