@@ -61,12 +61,10 @@ class UsersController extends Controller
     public function actionEdit()
     {
         $model = new UserValid();
-        $date = Yii::$app->request->post();
         $image = UploadedFile::getInstances($model, 'image');
-        $model->image = $image[0]->name;
         if (Yii::$app->request->isPost)
         {
-            if ($model->load(Yii::$app->request->post()) && $model->image = $image[0]->name )
+            if ($model->load(Yii::$app->request->post()))
             {
                 if($model->save($image))
                 {
