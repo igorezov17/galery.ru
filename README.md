@@ -53,9 +53,8 @@ psql postgres < dumpBD
     ![](https://github.com/igorezov17/galery.ru/blob/master/docs/3io0lGXsXJ4.jpg)
     - Изменение пароля
     ![](https://github.com/igorezov17/galery.ru/blob/master/docs/err__1AAT4Y.jpg)
-    - Изменение пароля
     
-  Выход (Для авторизированного пользователя)
+  Выход (Если пользователь авторизирован)
 
 
 ## Админ панель
