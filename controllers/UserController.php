@@ -13,22 +13,6 @@ use yii\filters\AccessControl;
 class UserController extends Controller
 {
 
-    // public function behaviors()
-    // {
-    //     return [
-    //         'access' => [
-    //             'class' => AccessControl::className(),
-    //             'rules' => [
-    //                 [
-    //                     'actions' => ['info', 'profile', 'security', 'logout'],
-    //                     'allow' => true,
-    //                     'roles' => ['admin', 'content', 'user'],
-    //                 ],
-    //             ],
-    //         ]
-    //     ];
-    // }
-
     /**
      * Основная информация о пользователе
      */

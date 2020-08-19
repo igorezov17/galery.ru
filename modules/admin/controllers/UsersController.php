@@ -64,7 +64,6 @@ class UsersController extends Controller
         $date = Yii::$app->request->post();
         $image = UploadedFile::getInstances($model, 'image');
         $model->image = $image[0]->name;
-
         if (Yii::$app->request->isPost)
         {
             if ($model->load(Yii::$app->request->post()) && $model->image = $image[0]->name )

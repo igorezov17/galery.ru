@@ -9,7 +9,6 @@ use app\models\forms\SignupForm;
 
 class RegisterController extends Controller
 {
-
     public $layout = 'standart'; 
 
     /***
@@ -26,6 +25,4 @@ class RegisterController extends Controller
         }
         return $this->render('signup', ['model' => $model]);
     }    
-
-    
 }

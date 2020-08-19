@@ -12,27 +12,6 @@ use yii\filters\VerbFilter;
 
 class NewsController extends Controller
 {
-    // public function behaviors()
-    // {
-    //     return [
-    //         'access' => [
-    //             'class' => AccessControl::className(),
-    //             'rules' => [
-    //                 [
-    //                     'actions' => ['index'],
-    //                     'allow' => true,
-    //                     'roles' => ['?'],
-    //                 ],
-    //                 [
-    //                     'actions' => ['index'],
-    //                     'allow' => true,
-    //                     'roles' => ['admin', 'user', 'content'],
-    //                 ]
-    //             ],
-    //         ]
-    //     ];
-    // }
-
     /**
     * Вывод всех новостей
     */
