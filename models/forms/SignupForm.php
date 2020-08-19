@@ -72,9 +72,9 @@ class SignupForm extends Model
      * Создание нового пользователя
      * @return void
      */
-    public function save($file)
+    public function save()
     {
-        $file = $file['0'];
+        //$file = $file['0'];
         if ($this->validate())
         {
             $user = new Users();
@@ -95,7 +95,7 @@ class SignupForm extends Model
                 ->bindValue(':password', $user->password)
                 ->bindValue(':imageFile', $user->image)
                 ->execute();
-            $file->saveAS(Yii::getAlias('@web') . 'uploads/' . $file->name);
+
             
             return true;
         } else {
